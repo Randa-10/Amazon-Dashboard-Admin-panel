@@ -13,7 +13,7 @@ import { SalesComponent } from './components/sales/sales.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
