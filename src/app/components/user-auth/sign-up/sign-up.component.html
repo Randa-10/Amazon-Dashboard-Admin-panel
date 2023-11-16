@@ -1,1 +1,41 @@
-<p>sign-up works!</p>
+<!-- sign-up.component.html -->
+
+<div class="container mt-5">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" id="name" formControlName="name" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="email" formControlName="email" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" formControlName="password" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" class="form-control" id="confirmPassword" formControlName="ConfirmPassword" required>
+      </div>
+  
+      <div class="form-group">
+        <label for="userType">User Type:</label>
+        <select class="form-control" id="userType" formControlName="userType">
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+  
+      <!-- Add Bootstrap styling for validation feedback -->
+     <!-- Add Bootstrap styling for validation feedback -->
+<div *ngIf="userForm.get('ConfirmPassword')!.hasError('mismatch')">
+    <small class="text-danger">Passwords do not match</small>
+  </div>
+  
+  
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
