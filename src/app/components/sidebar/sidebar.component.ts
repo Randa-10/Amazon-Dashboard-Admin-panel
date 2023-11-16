@@ -6,5 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+// sidebar.component.ts
 
+  isOpen = false;
+  isClose=false
+
+  toggleSidebar() {
+    this.isOpen = !this.isOpen;
+    this.isClose=!this.isClose
+  }
 }
+
+
