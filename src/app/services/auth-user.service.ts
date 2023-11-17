@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { Observable, catchError, retry, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, retry, tap, throwError } from 'rxjs';
 import { IUser } from '../models/i-user';
 import { Admin } from '../models/admin';
 
@@ -10,8 +10,9 @@ import { Admin } from '../models/admin';
 })
 export class AuthUserService {
   httpheader={}
-  isUserlog: any;
-  constructor(private httpClient:HttpClient) { 
+  private userLogged = new BehaviorSubject<boolean>(this.isUserlog());
+constructor(private httpClient:HttpClient) { 
+  
 this.httpheader={
  headers:new HttpHeaders({
   'Content-Type':'application/json'
@@ -19,7 +20,26 @@ this.httpheader={
 
  
 }
-  }   
+  } 
+
+  get userLogged$() {
+    return this.userLogged.asObservable();
+  }
+
+  isUserlog(): boolean {
+    return !!localStorage.getItem('userToken');
+  }
+
+  // loginn(): void {
+  //   // Perform your login logic
+  //   // After successful login, update the userLogged observable
+  //   this.userLogged.next(true);
+  // }
+
+  logout(): void {
+    localStorage.removeItem('userToken');
+    this.userLogged.next(false);
+  }
   //**sign up **/
   signUpUsers(user:IUser):Observable<IUser>{   //add user
     return this.httpClient.post<IUser>(`${environment.BaseApiURL}/api/user/signup`,JSON.stringify(user)
@@ -39,6 +59,18 @@ login(admin:Admin):Observable<Admin>{
       localStorage.setItem('userToken', token);
     })  )
 }
-
+// isUserlog(): boolean {
   
+//   return  !!localStorage.getItem('userToken');
+// }
+
+
+// get userLogged$() {
+//   return this.userLogged.asObservable();
+// }
+
+// logout(): void {
+//   localStorage.removeItem('userToken');
+//   this.userLogged.next(false);
+// }
 }

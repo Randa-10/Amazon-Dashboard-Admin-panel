@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthUserTokenService } from 'src/app/services/auth-user-token.service';
 import { AuthUserService } from 'src/app/services/auth-user.service';
 import Swal from 'sweetalert2';
 
@@ -28,7 +27,9 @@ export class LoginComponent {
   get password(){
     return this.userForm.get('password');
   }
-
+  logout(): void {
+    this.userService.logout();
+  }
   onSubmit(){
     if (this.userForm.valid) {
       this.userService.login(this.userForm.value).subscribe(
@@ -43,7 +44,7 @@ export class LoginComponent {
             }
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigate(['/home/dashboard']); 
+              // this.router.navigate(['/home/dashboard']); 
             }
           })
 
@@ -53,5 +54,6 @@ export class LoginComponent {
               }
       );
     }
-  }}
+  }
+}
 

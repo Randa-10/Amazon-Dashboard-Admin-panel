@@ -6,7 +6,7 @@ import { SalesComponent } from './components/sales/sales.component';
 import { ProductsComponent } from './components/products/products.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
-import { userAuthGuard } from './Guards/user-auth.guard';
+import { UserAuthGuard } from './Guards/user-auth.guard';
 
 
 
@@ -16,8 +16,8 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', redirectTo: '/home/dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent, title: 'dashboard page' },
-      { path: 'sales', component: SalesComponent, title: 'sales page' },
+      { path: 'dashboard', component: DashboardComponent, title: 'dashboard page'},
+      { path: 'sales', component: SalesComponent, title: 'sales page',canActivate:[UserAuthGuard]  },
       { path: 'products', component: ProductsComponent, title: 'products page' },
       { path: 'users', component: UsersComponent, title: 'users page' },
       { path: 'orders', component: UsersComponent, title: 'orders page' },
