@@ -20,9 +20,9 @@ this.httpheader={
   }   
   //**sign up **/
   signUpUsers(user:IUser):Observable<IUser>{   //add user
-    return this.httpClient.post<IUser>(`${environment.BaseApiURL}/Iuser`,JSON.stringify(user)
+    return this.httpClient.post<IUser>(`${environment.BaseApiURL}/api/user/signup`,JSON.stringify(user)
     ,this.httpheader).pipe(
-      retry(3)  ,                  // resubscribe بحيث لو حصل مشكلة في البوست يحاول بيعد كام مره عشان يبعت الحاجة دي او بيحاول اكتر من مره 
+      retry(3)  ,                  
     catchError((err)=>{
       return throwError(()=>{
         return new Error ('error match')  })
