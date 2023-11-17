@@ -1,4 +1,7 @@
 <!-- login.component.html -->
+<button class="btn btn-success " (click)="loginFunc()"  [disabled]="userLog">Login</button>
+<button class="btn btn-dark mx-3" (click)="logOutFunc()" [disabled]="!userLog">Log Out</button>
+
 <div class="container mt-5">
     <div class="card">
       <div class="card-body">

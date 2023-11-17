@@ -9,6 +9,7 @@ import { IUser } from '../models/i-user';
 })
 export class AuthUserService {
   httpheader={}
+  isUserlog: any;
   constructor(private httpClient:HttpClient) { 
 this.httpheader={
  headers:new HttpHeaders({
