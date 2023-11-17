@@ -41,12 +41,11 @@ export class SignUpComponent {
             icon: 'success',
             confirmButtonText: 'Ok', 
             customClass: {
-              confirmButton: 'btn btn-warning'  // Add the 'btn-warning' class to the confirm button
+              confirmButton: 'btn btn-warning'  
             }
           }).then((result) => {
             if (result.isConfirmed) {
-              // Redirect to another page after successful signup
-              this.router.navigate(['/home/dashboard']); // Adjust the route as needed
+              this.router.navigate(['/home/dashboard']); 
             }
           })
 

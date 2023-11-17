@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable, catchError, retry, tap, throwError } from 'rxjs';
 import { IUser } from '../models/i-user';
+import { Admin } from '../models/admin';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,16 @@ this.httpheader={
       return throwError(()=>{
         return new Error ('error match')  })
     })  )      
-      //** */
+      
   }
+login(admin:Admin):Observable<Admin>{
+  return this.httpClient.post<Admin>(`${environment.BaseApiURL}/api/user/loginAdmin`,JSON.stringify(admin), this.httpheader )
+  .pipe(
+    tap(response => {
+      const token = response.yourToken;
+      localStorage.setItem('userToken', token);
+    })  )
+}
+
   
 }

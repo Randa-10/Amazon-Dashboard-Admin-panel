@@ -1,5 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthUserTokenService } from 'src/app/services/auth-user-token.service';
+import { AuthUserService } from 'src/app/services/auth-user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -7,24 +12,46 @@ import { AuthUserTokenService } from 'src/app/services/auth-user-token.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  userLog:boolean=true;
-constructor(private userAuthService:AuthUserTokenService){
+  userForm: FormGroup;
 
-}
-  ngOnInit(): void {
-
-    this.userLog=this.userAuthService.isUserLogged;   
-    // console.log(this.userLog);
-
+  constructor(private userService: AuthUserService, private router: Router, private formBuilder: FormBuilder) {
+    this.userForm = this.formBuilder.group({
+    
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
   }
 
-  loginFunc(){
-//take lgib from userauth
-    this.userAuthService.login("randa@gmail.com","22222");
-    this.userLog=this.userAuthService.isUserLogged;                //to not need to refrsh
+  get email(){
+    return this.userForm.get('email');
   }
-  logOutFunc(){
-    this.userAuthService.logout();
-    this.userLog=this.userAuthService.isUserLogged;
+  get password(){
+    return this.userForm.get('password');
   }
-}
+
+  onSubmit(){
+    if (this.userForm.valid) {
+      this.userService.login(this.userForm.value).subscribe(
+        (response) => {
+          console.log('login successful!', response);
+          Swal.fire({
+            title: 'login  successful!',
+            icon: 'success',
+            confirmButtonText: 'Ok', 
+            customClass: {
+              confirmButton: 'btn btn-warning'  
+            }
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/home/dashboard']); 
+            }
+          })
+
+              },
+        (error) => {
+          console.error('Error in signup this email not match with admin', error);
+              }
+      );
+    }
+  }}
+

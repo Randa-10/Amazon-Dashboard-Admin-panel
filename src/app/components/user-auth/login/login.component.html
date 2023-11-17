@@ -1,22 +1,30 @@
-<!-- login.component.html -->
-<button class="btn btn-success " (click)="loginFunc()"  [disabled]="userLog">Login</button>
-<button class="btn btn-dark mx-3" (click)="logOutFunc()" [disabled]="!userLog">Log Out</button>
 
-<div class="container mt-5">
-    <div class="card">
-      <div class="card-body">
-        <h2 class="text-center mb-4">Admin Login</h2>
-        <form>
-          <div class="form-group">
-            <label for="username">Email:</label>
-            <input type="text" class="form-control" id="username" placeholder="Enter your email">
-          </div>
-          <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter your password">
-          </div>
-          <button type="submit" class="btn btn-warning btn-block mt-2">Login</button>
-        </form>
+<div class="container p-5 " >
+  <!-- <div class="card"> -->
+    <div class="card-body">
+      <h2 class="text-center mb-4"><i class="fa-solid fa-right-to-bracket"></i> Login</h2>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="form3Example3" name="email" formControlName="email"
+          [ngClass]="{'is-invalid':(email?.touched || email?.dirty)&&email?.invalid}" required email
+          class="form-control" />
+        <span class="invalid-feedback">
+          <span *ngIf="email?.errors?.['required']">Email is required</span>
+          <span *ngIf="email?.errors?.['email']">Email must be contain <i class="fa-solid fa-at"></i> </span>
+        </span>
       </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="form3Example3" name="password" minlength="8" formControlName="password"
+          [ngClass]="{'is-invalid':(password?.touched || password?.dirty)&&password?.invalid}" required 
+          class="form-control" />
+        <span class="invalid-feedback">
+          <span *ngIf="password?.errors?.['required']">password is required and must be 8 characters </span>
+        </span>
+      </div>
+        <button type="submit" class="btn btn-warning btn-block form-control  mt-2" [disabled]="userForm.invalid">Login</button>
+      </form>
     </div>
-  </div>
+  <!-- </div> -->
+</div>
