@@ -1,27 +1,27 @@
 <div [ngClass]="{'open': isOpen}" class="sidebar" (mouseenter)="openSidebar()" (mouseleave)="closeSidebar()">
     <button (click)="toggleSidebar()" class="btn btn-dark">
-      <i *ngIf="!isOpen||isOpen" class="fa-solid fa-list"></i>
+      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-list"></i>
       <span *ngIf="isOpen || isHovered">Amazon Dashboard</span>
     </button>
   
     <a routerLink="/home/dashboard">
-      <i *ngIf="!isOpen" class="fa-solid fa-house"></i>
-      <span *ngIf="isOpen || isHovered">Dashboard</span>
+      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-house"></i>
+       <span *ngIf="isOpen || isHovered">Dashboard</span>
     </a>
     <a routerLink="/home/users">
-      <i *ngIf="!isOpen" class="fa-solid fa-house"></i>
-      <span *ngIf="isOpen || isHovered">Users</span>
+      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-user"></i>
+       <span *ngIf="isOpen || isHovered">Users</span>
     </a>
     <a routerLink="/home/products">
-      <i *ngIf="!isOpen" class="fa-solid fa-house"></i>
-      <span *ngIf="isOpen || isHovered">Products</span>
+      <i *ngIf="!isOpen||isHovered" class="fa-brands fa-product-hunt"></i>
+       <span *ngIf="isOpen || isHovered">Products</span>
     </a>
     <a routerLink="/home/sales">
-      <i *ngIf="!isOpen" class="fa-solid fa-house"></i>
-      <span *ngIf="isOpen || isHovered">Sales</span>
+      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-house"></i>
+       <span *ngIf="isOpen || isHovered">Sales</span>
     </a>
     <a routerLink="/home/orders">
-      <i *ngIf="!isOpen" class="fa-solid fa-house"></i>
+      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-house"></i>
       <span *ngIf="isOpen || isHovered">Orders</span>
     </a>
   </div>

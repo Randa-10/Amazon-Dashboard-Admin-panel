@@ -1,30 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark ">
     <div class="container-fluid">
-        <!-- <div [ngClass]="{'open': isOpen}" class="sidebar">
+        <div [ngClass]="{'open': isOpen}" class="sidebar">
             <button (click)="toggleSidebar()" class="btn list btn-dark " ><i class="fa-solid fa-x icon"></i></button>
             <h5 class=" mt-2">Amazon Dashboard</h5>
-                <a routerLink="/home/dashboard">Dashboard</a>
-                <a routerLink="/home/users">Users</a>
-                <a routerLink="/home/products">Products</a>
+                <a routerLink="/home/dashboard"><i class="fa-solid fa-house"></i> Dashboard</a>
+                <a routerLink="/home/users"><i class="fa-solid fa-user"></i> Users</a>
+                <a routerLink="/home/products"><i class="fa-brands fa-product-hunt"></i> Products</a>
                 <a routerLink="/home/sales">Sales</a>
-                <a routerLink="/home/orders">Orders</a> 
-                <a routerLink="/home/settings">Settings</a> 
-          
-             </div> -->
-             <a class="navbar-brand col-md-4 col-sm-7" href="#">
-        <button  class="btn list btn-dark  ">
+                <a routerLink="/home/orders">Orders</a>        
+             </div>
+           <a class="navbar-brand col-md-4 col-sm-2  " >
+           <button  class="btn list btn-dark d-block d-sm-none  " (click)="toggleSidebar()">
+           <i class="fa-solid fa-list"></i> 
+           <img src="./assets/amzon-logo.png" height="30vh" />
+           </button>
+
+           <button  class="btn list btn-dark d-none d-sm-block  ">
            <!-- <i class="fa-solid fa-list"></i>  -->
-             <img src="./assets/amzon-logo.png" height="30vh" />
-            </button>
-      </a> 
+           <img src="./assets/amzon-logo.png" height="30vh" />
+           </button>
+           </a> 
       <!-- <img src="./assets/amzon-logo.png" height="30vh" /> -->
-      <div class="col-sm-6 d-flex justify-content-end " id="navbarNav">
+      <div class="col-sm-5 d-flex justify-content-end " id="navbarNav">
         <div class="ml-auto">
           <button class="btn btn-light mx-2" [routerLink]="'home/Users/login'"*ngIf="!isLoggedIn"  [disabled]="isLoggedIn" >Login</button>
           <button class="btn btn-warning" [routerLink]="'home/Users/sign-up'" *ngIf="!isLoggedIn">Sign Up</button>
           <button class="btn btn-warning" (click)="logout()" *ngIf="isLoggedIn" [disabled]="!isLoggedIn">Logout</button>
           
-          <a type="button" class="mx-2"    [ngStyle]="{ 'color': 'white'}" >
+          <a type="button" class="mx-2" [ngStyle]="{ 'color': 'white'}" >
            <i   class="fa-solid fa-earth-americas"></i> 
         </a>
     </div>
