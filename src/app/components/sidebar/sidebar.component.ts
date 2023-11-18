@@ -8,13 +8,20 @@ import { Component } from '@angular/core';
 export class SidebarComponent {
 // sidebar.component.ts
 
-  isOpen = false;
-  isClose=false
+isOpen: boolean = false;
+isHovered:boolean=true
 
-  toggleSidebar() {
-    this.isOpen = !this.isOpen;
-    this.isClose=!this.isClose
-  }
+toggleSidebar() {
+  this.isOpen = !this.isOpen;
+}
+
+openSidebar() {
+  this.isOpen = true;
+}
+
+closeSidebar() {
+  this.isOpen = false;
+}
 }
 
 
