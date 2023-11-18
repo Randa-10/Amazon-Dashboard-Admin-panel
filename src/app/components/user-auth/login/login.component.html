@@ -23,9 +23,9 @@
           <span *ngIf="password?.errors?.['required']">password is required and must be 8 characters </span>
         </span>
       </div>
-        <button type="submit" class="btn btn-warning btn-block form-control  mt-2" [disabled]="userForm.invalid">Login</button>
+        <button type="submit" class="btn btn-warning btn-block form-control  mt-2" [disabled]="isLoggedIn">Login</button>
       </form>
     </div>
   <!-- </div> -->
 </div>
-<button (click)="logout()">Logout</button>
+<!-- <button (click)="logout()" [disabled]="!isLoggedIn">Logout</button> -->

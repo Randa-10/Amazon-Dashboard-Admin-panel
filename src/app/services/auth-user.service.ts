@@ -30,11 +30,7 @@ this.httpheader={
     return !!localStorage.getItem('userToken');
   }
 
-  // loginn(): void {
-  //   // Perform your login logic
-  //   // After successful login, update the userLogged observable
-  //   this.userLogged.next(true);
-  // }
+
 
   logout(): void {
     localStorage.removeItem('userToken');
@@ -57,20 +53,8 @@ login(admin:Admin):Observable<Admin>{
     tap(response => {
       const token = response.yourToken;
       localStorage.setItem('userToken', token);
+      this.userLogged.next(true);
     })  )
 }
-// isUserlog(): boolean {
-  
-//   return  !!localStorage.getItem('userToken');
-// }
 
-
-// get userLogged$() {
-//   return this.userLogged.asObservable();
-// }
-
-// logout(): void {
-//   localStorage.removeItem('userToken');
-//   this.userLogged.next(false);
-// }
 }

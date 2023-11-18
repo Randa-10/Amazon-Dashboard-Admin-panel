@@ -16,7 +16,7 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: '', redirectTo: '/home/dashboard', pathMatch: 'full' },
-      { path: 'dashboard', component: DashboardComponent, title: 'dashboard page'},
+      { path: 'dashboard', component: DashboardComponent, title: 'dashboard page',canActivate:[UserAuthGuard] },
       { path: 'sales', component: SalesComponent, title: 'sales page',canActivate:[UserAuthGuard]  },
       { path: 'products', component: ProductsComponent, title: 'products page' },
       { path: 'users', component: UsersComponent, title: 'users page' },

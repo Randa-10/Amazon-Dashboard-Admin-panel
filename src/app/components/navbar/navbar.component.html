@@ -7,19 +7,21 @@
                 <a routerLink="/home/users">Users</a>
                 <a routerLink="/home/products">Products</a>
                 <a routerLink="/home/sales">Sales</a>
-                <a routerLink="/home/orders">Orders</a> <!-- New link -->
-                <a routerLink="/home/settings">Settings</a> <!-- New link -->
-                <!-- <a href="#">Link 5</a> -->
+                <a routerLink="/home/orders">Orders</a> 
+                <a routerLink="/home/settings">Settings</a> 
+          
              </div>
              <a class="navbar-brand col-md-4 col-sm-7" href="#">
         <button (click)="toggleSidebar()"  class="btn list btn-dark  "> <i class="fa-solid fa-list"></i>    <img src="./assets/amzon-logo.png" height="30vh" /></button>
       </a> 
       <div class="col-sm-6 d-flex justify-content-end " id="navbarNav">
         <div class="ml-auto">
-          <button class="btn btn-light mx-2" [routerLink]="'home/Users/login'">Login</button>    
-                <button class="btn btn-warning" [routerLink]="'home/Users/sign-up'" >Sign Up</button>
+          <button class="btn btn-light mx-2" [routerLink]="'home/Users/login'"*ngIf="!isLoggedIn"  [disabled]="isLoggedIn" >Login</button>
+          <button class="btn btn-warning" [routerLink]="'home/Users/sign-up'" *ngIf="!isLoggedIn">Sign Up</button>
+          <button class="btn btn-warning" (click)="logout()" *ngIf="isLoggedIn" [disabled]="!isLoggedIn">Logout</button>
+          
           <a type="button" class="mx-2"    [ngStyle]="{ 'color': 'white'}" >
-           <i   class="fa-solid fa-earth-americas"></i> <!-- Bootstrap Icons - Globe icon -->
+           <i   class="fa-solid fa-earth-americas"></i> 
         </a>
     </div>
  </div>
