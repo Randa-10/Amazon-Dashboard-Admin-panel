@@ -7,6 +7,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserAuthGuard } from './Guards/user-auth.guard';
+import { OrdersComponent } from './components/orders/orders.component';
 
 
 
@@ -20,7 +21,7 @@ const routes: Routes = [
       { path: 'sales', component: SalesComponent, title: 'sales page',canActivate:[UserAuthGuard]  },
       { path: 'products', component: ProductsComponent, title: 'products page' },
       { path: 'users', component: UsersComponent, title: 'users page' },
-      { path: 'orders', component: UsersComponent, title: 'orders page' },
+      { path: 'orders', component: OrdersComponent, title: 'orders page' },
       {
         path: 'Users',
         loadChildren: () => import('./components/user-auth/user-auth.module').then(m => m.UserAuthModule)
