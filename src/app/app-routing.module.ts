@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: '', redirectTo: '/home/dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, title: 'dashboard page',canActivate:[UserAuthGuard] },
       { path: 'sales', component: SalesComponent, title: 'sales page',canActivate:[UserAuthGuard]  },
-      { path: 'products', component: ProductsComponent, title: 'products page' },
+      { path: 'products', component: ProductsComponent, title: 'products page',canActivate:[UserAuthGuard]  },
       { path: 'users', component: UsersComponent, title: 'users page' },
       { path: 'orders', component: OrdersComponent, title: 'orders page' },
       {
