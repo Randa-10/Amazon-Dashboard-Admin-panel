@@ -9,6 +9,8 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
+  Btitle:string="Add Product";
+  Head:string="Add New Product"
   product: Products = {} as Products;
   productForm!: FormGroup;
   currentProductID: string = "";
@@ -30,6 +32,9 @@ export class ProductsComponent implements OnInit {
         if (productData) {
           this.product = foundProd;
           console.log(productData, "found product that you want to update");
+          this.Btitle="update product";
+          this.Head="update your  product"
+
           this.productForm.patchValue(productData)
 
         } else {
