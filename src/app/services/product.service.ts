@@ -8,27 +8,54 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class ProductService {
+  httpHeader = {}
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.httpHeader = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+
+    }
+  }
 
   getProducts(): Observable<Products[]> {
     return this.http.get<Products[]>(`${environment.BaseApiURL}/products`);
   }
-
- SaveNewProduct(prd:Products):Observable<Products>{
-    return this.http.post<Products>(`${environment.BaseApiURL}/products`,
-    JSON.stringify(prd),
-    {
-   headers:new HttpHeaders({
-   
-     'Content-Type':'application/json'
-   })
-   }).pipe(
-     retry(3)  ,                  // resubscribe بحيث لو حصل مشكلة في البوست يحاول بيعد كام مره عشان يبعت الحاجة دي او بيحاول اكتر من مره 
-   catchError((err)=>{
-     return throwError(()=>{
-       return new Error ('error match')  })
-   })  )      
+  getProductByID(prodID: string): Observable<Products> {
+    return this.http.get<Products>(`${environment.BaseApiURL}/products/admin/${prodID}`);
+  }
+  updateProduct(prodID: string,product: Products): Observable<Products> {
+    console.log(prodID,product,"service");
     
-   }
+    return this.http.patch<Products>(`${environment.BaseApiURL}/products/${prodID}`, JSON.stringify(product), this.httpHeader).pipe(
+      retry(2),
+      //   catch
+      catchError((err) => {
+        return throwError(() => {
+          return new Error("error in updating")
+        }
+        )
+      }
+      )
+    )
+  }
+
+  SaveNewProduct(prd: Products): Observable<Products> {
+    return this.http.post<Products>(`${environment.BaseApiURL}/products`,
+      JSON.stringify(prd),
+      {
+        headers: new HttpHeaders({
+
+          'Content-Type': 'application/json'
+        })
+      }).pipe(
+        retry(3),                  // resubscribe بحيث لو حصل مشكلة في البوست يحاول بيعد كام مره عشان يبعت الحاجة دي او بيحاول اكتر من مره 
+        catchError((err) => {
+          return throwError(() => {
+            return new Error('error match')
+          })
+        }))
+
+  }
 }

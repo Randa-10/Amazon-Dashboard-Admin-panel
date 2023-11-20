@@ -1,4 +1,5 @@
 export interface Products {
+  _id:string,
     en: {
         title: string;
         description: string;

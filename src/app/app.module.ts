@@ -14,6 +14,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AllPrpductsComponent } from './components/all-prpducts/all-prpducts.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
     SalesComponent,
     DashboardComponent,
     OrdersComponent,
-    FooterComponent
+    FooterComponent,
+    AllPrpductsComponent
   ],
   imports: [
     BrowserModule,
