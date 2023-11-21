@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment.development';
 })
 export class ProductService {
   httpHeader = {}
-
   constructor(private http: HttpClient) {
     this.httpHeader = {
       headers: new HttpHeaders({
@@ -42,12 +41,14 @@ export class ProductService {
   }
 
   SaveNewProduct(prd: Products): Observable<Products> {
-    return this.http.post<Products>(`${environment.BaseApiURL}/products`,
+    const authToken = JSON.stringify(localStorage.getItem('userToken'));
+    return this.http.post<Products>(`${environment.BaseApiURL}/products/`,
       JSON.stringify(prd),
       {
         headers: new HttpHeaders({
 
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authToken}`
         })
       }).pipe(
         retry(3),                  // resubscribe بحيث لو حصل مشكلة في البوست يحاول بيعد كام مره عشان يبعت الحاجة دي او بيحاول اكتر من مره 
