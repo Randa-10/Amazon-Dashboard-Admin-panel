@@ -1,8 +1,18 @@
-
 <div class="container-flud">
-  <h2>{{Head}}</h2>
+  <h2>{{ Head }}</h2>
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="row product">
     <div class="col-md-6">
+      <!--// en -->
+      <div formGroupName="en">
+        <div class="mb-3">
+          <label for="enTitle" class="form-label">English Title:</label>
+          <input
+            type="text"
+            id="enTitle"
+            class="form-control"
+            formControlName="title"
+          />
+        </div>
     <!--// en -->
     <div formGroupName="en">
       <div class="mb-3">
@@ -15,6 +25,27 @@
     </span>
   </div>
 
+        <div class="mb-3">
+          <label for="enDescription" class="form-label"
+            >English Description:</label
+          >
+          <textarea
+            id="enDescription"
+            class="form-control"
+            formControlName="description"
+          ></textarea>
+        </div>
+
+        <div class="mb-3">
+          <label for="enBrand" class="form-label">English Brand:</label>
+          <input
+            type="text"
+            id="enBrand"
+            class="form-control"
+            formControlName="brand"
+          />
+        </div>
+      </div>
       <div class="mb-3">
         <label for="enDescription" class="form-label">English Description:</label>
         <textarea
@@ -137,9 +168,3 @@
     <button type="submit" class="btn btn-dark"  [disabled]="productForm.invalid">{{Btitle}}</button>
   </form>
 </div>
-
-
-
-
-
-
