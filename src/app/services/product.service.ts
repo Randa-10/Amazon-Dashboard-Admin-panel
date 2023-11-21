@@ -19,7 +19,13 @@ export class ProductService {
   }
 
   getProducts(): Observable<Products[]> {
-    return this.http.get<Products[]>(`${environment.BaseApiURL}/products`);
+    const authToken = localStorage.getItem('userToken');
+    return this.http.get<Products[]>(`${environment.BaseApiURL}/products/adminProducts`, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `${authToken}`
+      })
+    });
   }
   getProductByID(prodID: string): Observable<Products> {
     return this.http.get<Products>(`${environment.BaseApiURL}/products/admin/${prodID}`);
@@ -41,14 +47,14 @@ export class ProductService {
   }
 
   SaveNewProduct(prd: Products): Observable<Products> {
-    const authToken = JSON.stringify(localStorage.getItem('userToken'));
-    return this.http.post<Products>(`${environment.BaseApiURL}/products/`,
+    const authToken = localStorage.getItem('userToken');
+    return this.http.post<Products>(`${environment.BaseApiURL}/products/addbyAdmin`,
       JSON.stringify(prd),
       {
         headers: new HttpHeaders({
 
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${authToken}`
+          'Authorization': ` ${authToken}`
         })
       }).pipe(
         retry(3),                  // resubscribe بحيث لو حصل مشكلة في البوست يحاول بيعد كام مره عشان يبعت الحاجة دي او بيحاول اكتر من مره 

@@ -76,7 +76,31 @@ export class ProductsComponent implements OnInit {
       discountPercentage: [0, Validators.required],
     });
   }
+//valisation//
+get enTitle() {
+  return this.productForm.get('en.title');
+}
 
+get arTitle() {
+  return this.productForm.get('ar.title');
+}
+
+get enDescription() {
+  return this.productForm.get('en.description');
+}
+get arDescription() {
+  return this.productForm.get('ar.description');
+}
+get brand() {
+  return this.productForm.get('ar.brand');
+}
+get enbrand() {
+  return this.productForm.get('en.brand');
+}
+get thum() {
+  return this.productForm.get('thumbnail');
+}
+//////
 
   onSubmit(): void {
     // / add new product and update existing product&&this.productForm.valid)

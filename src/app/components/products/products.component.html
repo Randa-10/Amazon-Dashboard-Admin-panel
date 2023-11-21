@@ -1,5 +1,4 @@
 
-
 <div class="container-flud">
   <h2>{{Head}}</h2>
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="row product">
@@ -8,19 +7,37 @@
     <div formGroupName="en">
       <div class="mb-3">
         <label for="enTitle" class="form-label">English Title:</label>
-        <input type="text" id="enTitle" class="form-control" formControlName="title">
-      </div>
+      <input type="title" id="enTitle" name="title" minlength="4" formControlName="title"
+      [ngClass]="{'is-invalid':(enTitle?.touched || enTitle?.dirty)&&enTitle?.invalid}" required 
+      class="form-control" />
+    <span class="invalid-feedback">
+      <span *ngIf="enTitle?.errors?.['required']">Title is required</span>
+    </span>
+  </div>
 
       <div class="mb-3">
         <label for="enDescription" class="form-label">English Description:</label>
-        <textarea id="enDescription" class="form-control" formControlName="description"></textarea>
-
+        <textarea
+          id="enDescription"
+          name="description"
+          minlength="10"
+          formControlName="description"
+          [ngClass]="{ 'is-invalid': (enDescription?.touched || enDescription?.dirty) && enDescription?.invalid }"
+          required
+          class="form-control"
+        ></textarea>
+        <span class="invalid-feedback">
+          <span *ngIf="enDescription?.errors?.['required']">Description is required.</span>
+        </span>
       </div>
-
       <div class="mb-3">
         <label for="enBrand" class="form-label">English Brand:</label>
-        <input type="text" id="enBrand" class="form-control" formControlName="brand">
-  
+        <input type="brand" id="enBrand" name="brand"  formControlName="brand"
+        [ngClass]="{'is-invalid':(enbrand?.touched || enbrand?.dirty)&&enbrand?.invalid}" required 
+        class="form-control" />
+      <span class="invalid-feedback">
+        <span *ngIf="enbrand?.errors?.['required']">Brand is required</span>
+      </span>
       </div>
     </div>
 
@@ -28,30 +45,56 @@
     <div formGroupName="ar">
       <div class="mb-3">
         <label for="arTitle" class="form-label">Arabic Title:</label>
-        <input type="text" id="arTitle" class="form-control" formControlName="title">
-
+        <input type="title" id="arTitle" name="title" minlength="4" formControlName="title"
+        [ngClass]="{'is-invalid':(arTitle?.touched || arTitle?.dirty)&&arTitle?.invalid}" required 
+        class="form-control" />
+      <span class="invalid-feedback">
+        <span *ngIf="arTitle?.errors?.['required']">Title is required</span>
+      </span>
       </div>
 
       <div class="mb-3">
         <label for="arDescription" class="form-label">Arabic Description:</label>
-        <textarea id="arDescription" class="form-control" formControlName="description"></textarea>
+        <textarea
+        id="arDescription"
+        name="description"
+        minlength="10"
+        formControlName="description"
+        [ngClass]="{ 'is-invalid': (arDescription?.touched || arDescription?.dirty) && arDescription?.invalid }"
+        required
+        class="form-control"
+      ></textarea>
+      <span class="invalid-feedback">
+        <span *ngIf="arDescription?.errors?.['required']">Description is required.</span>
+ 
+      </span>
       </div>
 
       <div class="mb-3">
         <label for="arBrand" class="form-label">Arabic Brand:</label>
-        <input type="text" id="arBrand" class="form-control" formControlName="brand">
+        <input type="brand" id="arBrand" name="brand"  formControlName="brand"
+        [ngClass]="{'is-invalid':(brand?.touched || brand?.dirty)&&brand?.invalid}" required 
+        class="form-control" />
+      <span class="invalid-feedback">
+        <span *ngIf="brand?.errors?.['required']">Brand is required</span>
+      </span>
       </div>
-    </div>
-
+</div>
 
     <div class="mb-3">
       <label for="thumbnail" class="form-label">Thumbnail URL:</label>
-      <input type="text" id="thumbnail" class="form-control" formControlName="thumbnail">
+      <input type="thumbnail" id="thumbnail" name="thumbnail"  formControlName="thumbnail"
+      [ngClass]="{'is-invalid':(thum?.touched || thum?.dirty)&&thum?.invalid}" required 
+      class="form-control" />
+    <span class="invalid-feedback">
+      <span *ngIf="thum?.errors?.['required']">Thumbnail URLrequired</span>
+    </span>
     </div>
     <div class="mb-3">
       <label for="images" class="form-label">images:</label>
       <input type="text" id="images" class="form-control" formControlName="images">
-    </div> </div>
+    </div> 
+  </div>
     <div class="col-md-6">
     <div class="mb-3">
       <label for="category" class="form-label">category:</label>
@@ -87,21 +130,11 @@
     <div class="mb-3">
       <label for="discountPercentage" class="form-label">discountPercentage:</label>
       <input type="text" id="discountPercentage" class="form-control" formControlName="discountPercentage">
-
     </div> 
-    <div class="mb-3">
-      <label for="rating" class="form-label">rating:</label>
-      <input type="text" id="rating" class="form-control" formControlName="rating">
  
-    </div>    
-    <div class="mb-3">
-      <label for="ratingQuantity" class="form-label">ratingQuantity:</label>
-      <input type="text" id="ratingQuantity" class="form-control" formControlName="ratingQuantity">
 
-    </div> 
     </div>
-    <button type="submit" class="btn btn-dark">{{Btitle}}</button>
-    <!-- <button type="submit" class="btn btn-dark p-2 ">{{Btitle}}hhhhh</button> -->
+    <button type="submit" class="btn btn-dark"  [disabled]="productForm.invalid">{{Btitle}}</button>
   </form>
 </div>
 
