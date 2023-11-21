@@ -1,4 +1,20 @@
 .container{
-    width:400px;
+    // width:400px;
     height:400px
 }
+.product {
+    background-color: #fff;
+    padding: 20px; 
+    border-radius: 8px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
+    margin-top: 20px;
+  }
+  .btn{
+    color: #fff;
+  }
+
+  .product input,
+  .product textarea {
+    margin-bottom: 10px;
+  }
+  

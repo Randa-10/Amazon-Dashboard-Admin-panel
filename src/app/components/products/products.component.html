@@ -1,167 +1,112 @@
-<div class="container-fluid">
+
+
+<div class="container-flud">
   <h2>{{Head}}</h2>
-
-  <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-    <div class="row">
-      <div class="col-6">
-        <!--// en -->
-        <div formGroupName="en">
-          <div class="mb-3">
-            <label for="enTitle" class="form-label">English Title</label>
-            <input
-              type="text"
-              id="enTitle"
-              class="form-control"
-              formControlName="title"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="enDescription" class="form-label"
-              >English Description</label
-            >
-            <textarea
-              id="enDescription"
-              class="form-control"
-              formControlName="description"
-            ></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label for="enBrand" class="form-label">English Brand</label>
-            <input
-              type="text"
-              id="enBrand"
-              class="form-control"
-              formControlName="brand"
-            />
-          </div>
-        </div>
-
-        <!-- ar -->
-        <div formGroupName="ar">
-          <div class="mb-3">
-            <label for="arTitle" class="form-label">Arabic Title</label>
-            <input
-              type="text"
-              id="arTitle"
-              class="form-control"
-              formControlName="title"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="arDescription" class="form-label"
-              >Arabic Description</label
-            >
-            <textarea
-              id="arDescription"
-              class="form-control"
-              formControlName="description"
-            ></textarea>
-          </div>
-
-          <div class="mb-3">
-            <label for="arBrand" class="form-label">Arabic Brand</label>
-            <input
-              type="text"
-              id="arBrand"
-              class="form-control"
-              formControlName="brand"
-            />
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <label for="thumbnail" class="form-label">Thumbnail URL</label>
-          <input
-            type="text"
-            id="thumbnail"
-            class="form-control"
-            formControlName="thumbnail"
-          />
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="mb-3">
-          <label for="images" class="form-label">images</label>
-          <input
-            type="text"
-            id="images"
-            class="form-control"
-            formControlName="images"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="category" class="form-label">category</label>
-          <input
-            type="text"
-            id="category"
-            class="form-control"
-            formControlName="category"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="subCategory" class="form-label">subCategory</label>
-          <input
-            type="text"
-            id="subCategory"
-            class="form-control"
-            formControlName="subCategory"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="subSubCategor" class="form-label">subSubCategor</label>
-          <input
-            type="text"
-            id="subSubCategor"
-            class="form-control"
-            formControlName="subSubCategor"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="sku" class="form-label">sku</label>
-          <input
-            type="text"
-            id="sku"
-            class="form-control"
-            formControlName="sku"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="quantityInStock" class="form-label"
-            >quantityInStock</label
-          >
-          <input
-            type="text"
-            id="quantityInStock"
-            class="form-control"
-            formControlName="quantityInStock"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="price" class="form-label">price</label>
-          <input
-            type="text"
-            id="price"
-            class="form-control"
-            formControlName="price"
-          />
-        </div>
-        <div class="mb-3">
-          <label for="discountPercentage" class="form-label"
-            >discountPercentage</label
-          >
-          <input
-            type="text"
-            id="discountPercentage"
-            class="form-control"
-            formControlName="discountPercentage"
-          />
-        </div>
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="row product">
+    <div class="col-md-6">
+    <!--// en -->
+    <div formGroupName="en">
+      <div class="mb-3">
+        <label for="enTitle" class="form-label">English Title:</label>
+        <input type="text" id="enTitle" class="form-control" formControlName="title">
       </div>
 
-      <button type="submit" class="btn btn-primary">{{Btitle}}</button>
+      <div class="mb-3">
+        <label for="enDescription" class="form-label">English Description:</label>
+        <textarea id="enDescription" class="form-control" formControlName="description"></textarea>
+
+      </div>
+
+      <div class="mb-3">
+        <label for="enBrand" class="form-label">English Brand:</label>
+        <input type="text" id="enBrand" class="form-control" formControlName="brand">
+  
+      </div>
     </div>
+
+    <!-- ar -->
+    <div formGroupName="ar">
+      <div class="mb-3">
+        <label for="arTitle" class="form-label">Arabic Title:</label>
+        <input type="text" id="arTitle" class="form-control" formControlName="title">
+
+      </div>
+
+      <div class="mb-3">
+        <label for="arDescription" class="form-label">Arabic Description:</label>
+        <textarea id="arDescription" class="form-control" formControlName="description"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="arBrand" class="form-label">Arabic Brand:</label>
+        <input type="text" id="arBrand" class="form-control" formControlName="brand">
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="thumbnail" class="form-label">Thumbnail URL:</label>
+      <input type="text" id="thumbnail" class="form-control" formControlName="thumbnail">
+    </div>
+    <div class="mb-3">
+      <label for="images" class="form-label">images:</label>
+      <input type="text" id="images" class="form-control" formControlName="images">
+    </div> </div>
+    <div class="col-md-6">
+    <div class="mb-3">
+      <label for="category" class="form-label">category:</label>
+      <input type="text" id="category" class="form-control" formControlName="category">
+
+    </div>
+    <div class="mb-3">
+      <label for="subCategory" class="form-label">subCategory:</label>
+      <input type="text" id="subCategory" class="form-control" formControlName="subCategory">
+
+    </div>
+    <div class="mb-3">
+      <label for="subSubCategor" class="form-label">subSubCategor:</label>
+      <input type="text" id="subSubCategor" class="form-control" formControlName="subSubCategor">
+ 
+    </div>
+    <div class="mb-3">
+      <label for="sku" class="form-label">sku:</label>
+      <input type="text" id="sku" class="form-control" formControlName="sku">
+
+      
+    </div>
+    <div class="mb-3">
+      <label for="quantityInStock" class="form-label">quantityInStock:</label>
+      <input type="text" id="quantityInStock" class="form-control" formControlName="quantityInStock">
+
+    </div> 
+    <div class="mb-3">
+      <label for="price" class="form-label">price:</label>
+      <input type="text" id="price" class="form-control" formControlName="price">
+
+    </div> 
+    <div class="mb-3">
+      <label for="discountPercentage" class="form-label">discountPercentage:</label>
+      <input type="text" id="discountPercentage" class="form-control" formControlName="discountPercentage">
+
+    </div> 
+    <div class="mb-3">
+      <label for="rating" class="form-label">rating:</label>
+      <input type="text" id="rating" class="form-control" formControlName="rating">
+ 
+    </div>    
+    <div class="mb-3">
+      <label for="ratingQuantity" class="form-label">ratingQuantity:</label>
+      <input type="text" id="ratingQuantity" class="form-control" formControlName="ratingQuantity">
+
+    </div> 
+    </div>
+    <button type="submit" class="btn btn-dark">{{Btitle}}</button>
+    <!-- <button type="submit" class="btn btn-dark p-2 ">{{Btitle}}hhhhh</button> -->
   </form>
 </div>
+
+
+
+
+
+
