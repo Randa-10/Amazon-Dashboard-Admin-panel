@@ -1,29 +1,28 @@
-<p>dashboard works!</p>
 <div class="container mt-4">
-    <h2>Product List</h2>
-    
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Image</th>
-          <th scope="col">Title (English)</th>
-          <th scope="col">Title (Arabic)</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of products">
-          <td><img [src]="product.thumbnail" class="img-thumbnail" alt="{{ product.en.title }}"></td>
-          <td>{{ product.en.title }}</td>
-          <td>{{ product.ar.title }}</td>
-          <!-- <button class="btn btn-primary" > -->
-            <a [routerLink]="['/home/updateProduct', product._id]">
-            <i class="fas fa-edit edit"></i></a> <!-- FontAwesome Edit Icon -->
-          <!-- </button> -->
-          <!-- <button class="btn btn-danger" (click)="deleteProduct(product.id)" > -->
-            <i class="fas fa-trash-alt rab" ></i> <!-- FontAwesome Trash Icon -->
-          <!-- </button> -->
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <h2>Product List</h2>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Title (English)</th>
+        <th scope="col">Title (Arabic)</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td><img [src]="product.thumbnail" class="img-thumbnail" alt="{{ product.en.title }}"></td>
+        <td>{{ product.en.title }}</td>
+        <td>{{ product.ar.title }}</td>
+        <td>
+          <a [routerLink]="['/home/updateProduct', product._id]" class="" >
+            <i class="fas fa-edit mx-2 fas1"></i>
+          </a>
+          <a (click)="confirmDelete(product._id)" >
+            <i class="fas fa-trash-alt fas2"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

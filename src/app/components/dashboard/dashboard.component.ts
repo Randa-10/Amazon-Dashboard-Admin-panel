@@ -34,22 +34,26 @@ export class DashboardComponent  implements OnInit {
       this.products = response.data;
     } else {
       console.error('Invalid API response:', response);
-      // Handle unexpected API response
     }
   }
 
-  // deleteProduct(productId: number): void {
-  //   // Implement the logic to delete the product here
-  //   this.productService.deleteProduct(productId).subscribe(
-  //     (data) => {
-  //       // Handle successful deletion, if needed
-  //     },
-  //     (error) => {
-  //       console.error('Error deleting product:', error);
-  //       // Handle error (display message, etc.)
-  //     }
-  //   );
+  confirmDelete(productId: string): void {
+    const isConfirmed = window.confirm('Are you sure you want to delete this product?');
 
-// }}
+    if (isConfirmed) {
+      this.deleteProduct(productId);
+    }
+  }
+
+  deleteProduct(productId: string): void {
+    this.productService.deletProduct(productId).subscribe(
+      (response) => {
+        console.log('Product deleted successfully', response);
+      },
+      (error) => {
+        console.error('Error deleting product', error);
+      }
+    );
+  }
 }
  

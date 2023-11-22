@@ -9,23 +9,20 @@ import { environment } from 'src/environments/environment.development';
 })
 export class ProductService {
   httpHeader = {}
+  authToken = localStorage.getItem('userToken');
+
   constructor(private http: HttpClient) {
     this.httpHeader = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `${this.authToken}`
       })
 
     }
   }
 
   getProducts(): Observable<Products[]> {
-    const authToken = localStorage.getItem('userToken');
-    return this.http.get<Products[]>(`${environment.BaseApiURL}/products/adminProducts`, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `${authToken}`
-      })
-    });
+    return this.http.get<Products[]>(`${environment.BaseApiURL}/products/adminProducts`, this.httpHeader);
   }
   getProductByID(prodID: string): Observable<Products> {
     return this.http.get<Products>(`${environment.BaseApiURL}/products/admin/${prodID}`);
@@ -47,22 +44,17 @@ export class ProductService {
   }
 
   SaveNewProduct(prd: Products): Observable<Products> {
-    const authToken = localStorage.getItem('userToken');
     return this.http.post<Products>(`${environment.BaseApiURL}/products/addbyAdmin`,
       JSON.stringify(prd),
-      {
-        headers: new HttpHeaders({
-
-          'Content-Type': 'application/json',
-          'Authorization': ` ${authToken}`
-        })
-      }).pipe(
+      this.httpHeader).pipe(
         retry(3),                  // resubscribe بحيث لو حصل مشكلة في البوست يحاول بيعد كام مره عشان يبعت الحاجة دي او بيحاول اكتر من مره 
         catchError((err) => {
           return throwError(() => {
             return new Error('error match')
           })
         }))
-
+  }
+  deletProduct (proID:string):Observable<Products>{
+    return this.http.delete<Products>(`${environment.BaseApiURL}/products/${proID}`,this.httpHeader);
   }
 }
