@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { NotfoundComponent } from './components/notfound/notfound.component';
-import { SalesComponent } from './components/sales/sales.component';
 import { ProductsComponent } from './components/products/products.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
@@ -22,7 +20,6 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent, title: 'dashboard page',canActivate: [UserAuthGuard]  },
-      { path: 'sales', component: SalesComponent, title: 'sales page', canActivate: [UserAuthGuard] },
       { path: 'products', component: ProductsComponent, title: 'products page',canActivate: [UserAuthGuard]  },
       { path: 'updateProduct/:prodID', component: ProductsComponent, title: 'products page',canActivate: [UserAuthGuard]  },
       { path: 'users', component: UsersComponent, title: 'users page',canActivate: [UserAuthGuard]  },
