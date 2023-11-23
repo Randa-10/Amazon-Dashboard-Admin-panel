@@ -15,6 +15,9 @@ export class DashboardComponent  implements OnInit {
 
   ngOnInit(): void {
     this.getProducts();
+
+
+    
   }
 
   getProducts(): void {
@@ -24,7 +27,6 @@ export class DashboardComponent  implements OnInit {
       },
       (error) => {
         console.error('Error fetching products:', error);
-        // Handle error (display message, etc.)
       }
     );
   }
