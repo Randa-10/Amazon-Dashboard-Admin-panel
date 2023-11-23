@@ -1,4 +1,4 @@
-<div [ngClass]="{'open': isOpen}" class="sidebar" (mouseenter)="openSidebar()" (mouseleave)="closeSidebar()">
+<div *ngIf="isLoggedIn" [ngClass]="{'open': isOpen}" class="sidebar" (mouseenter)="openSidebar()" (mouseleave)="closeSidebar()">
     <button (click)="toggleSidebar()" class="btn btn-dark">
       <i *ngIf="!isOpen||isHovered" class="fa-solid fa-list"></i>
       <span *ngIf="isOpen || isHovered">Amazon Dashboard</span>
