@@ -8,7 +8,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { ProductsComponent } from './components/products/products.component';
-import { UsersComponent } from './components/users/users.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -22,7 +21,6 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
     HomeComponent,
     NotfoundComponent,
     ProductsComponent,
-    UsersComponent,
     DashboardComponent,
     OrdersComponent,
     FooterComponent,
