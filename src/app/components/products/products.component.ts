@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Category } from 'src/app/models/category';
 import { Products } from 'src/app/models/products';
+import { SubSubcategory } from 'src/app/models/sub-subcategory';
+import { Subcategory } from 'src/app/models/subcategory';
+import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-products',
@@ -14,8 +18,12 @@ export class ProductsComponent implements OnInit {
   product: Products = {} as Products;
   productForm!: FormGroup;
   currentProductID: string = "";
-  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute) {
+  categories: Category[] = [];
+ subCategory: Subcategory[] = [];
+ SubSubcategory: SubSubcategory[] = [];
 
+  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute,
+    private categoryService: CategoryService) {
 
   }
   ngOnInit(): void {
@@ -45,11 +53,11 @@ export class ProductsComponent implements OnInit {
         console.log(Error);
         
       }
-
-
-
     })
 
+    this.getCategories();  
+    this.getSubCategories()
+    this.getsubSubCategories()
 
   }
 
@@ -66,7 +74,7 @@ export class ProductsComponent implements OnInit {
         brand: ['', Validators.required],
       }),
       thumbnail: ['', Validators.required],
-      images: this.fb.array([]),
+      images: this.fb.array(['']),
       category: ['', Validators.required],
       subCategory: ['', Validators.required],
       subSubCategor: ['', Validators.required],
@@ -125,16 +133,60 @@ get thum() {
         next: (data) => {
           console.log('Product saved successfully:', data);
                 this.productForm.reset();
-              this.router.navigate(['./Products'])
-        },
+                alert("Product saved successfully")
+                this.router.navigate(['home/dashboard'])    
+                const selectedCategoryIdControl = this.productForm.get('category');
+  
+                if (selectedCategoryIdControl) {
+                  const selectedCategoryId = selectedCategoryIdControl.value;
+                  // console.log('Selected Category ID:',selectedCategoryId);
+                } else {
+                  console.error('Error: selectedCategoryId control is null.');
+                }   
+              
+              },
         error: (err) =>
         console.error('Error saving product:', err)
       })
     }
 
   }
+  
+  getCategories(): void {
+    this.categoryService.getCategories().subscribe(
+      (response) => {
+        this.categories = response;
+      },
+      (error) => {
+        console.error('Error fetching categories:', error);
+      }
+    );
+  }
+  getSubCategories(): void {
+    this.categoryService.getsubCategories().subscribe(
+      (response) => {
+        this.subCategory = response;
+      },
+      (error) => {
+        console.error('Error fetching categories:', error);
+      }
+    );
+  }
+  getsubSubCategories(): void {
+    this.categoryService.getsubSubCategories().subscribe(
+      (response) => {
+        this.SubSubcategory = response;
+      },
+      (error) => {
+        console.error('Error fetching categories:', error);
+      }
+    );
+  }
 
 }
+
+
+
 
 
 

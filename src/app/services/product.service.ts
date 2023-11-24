@@ -57,4 +57,7 @@ export class ProductService {
   deletProduct (proID:string):Observable<Products>{
     return this.http.delete<Products>(`${environment.BaseApiURL}/products/${proID}`,this.httpHeader);
   }
+
+
+
 }

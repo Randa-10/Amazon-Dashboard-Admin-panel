@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Products } from 'src/app/models/products';
 import { ProductService } from 'src/app/services/product.service';
 @Component({
@@ -11,15 +12,12 @@ import { ProductService } from 'src/app/services/product.service';
 export class DashboardComponent  implements OnInit {
   products: Products[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService,private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getProducts();
-
-
-    
   }
-
+ 
   getProducts(): void {
     this.productService.getProducts().subscribe(
       (response) => {
@@ -50,12 +48,13 @@ export class DashboardComponent  implements OnInit {
   deleteProduct(productId: string): void {
     this.productService.deletProduct(productId).subscribe(
       (response) => {
+        this.ngOnInit();
         console.log('Product deleted successfully', response);
       },
       (error) => {
         console.error('Error deleting product', error);
       }
     );
-  }
+}
 }
  
