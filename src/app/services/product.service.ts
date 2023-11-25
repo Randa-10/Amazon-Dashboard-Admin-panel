@@ -57,7 +57,12 @@ export class ProductService {
   deletProduct (proID:string):Observable<Products>{
     return this.http.delete<Products>(`${environment.BaseApiURL}/products/${proID}`,this.httpHeader);
   }
+  getNumberOfProducts(): Observable<number> {
+    // Adjust the endpoint based on your API
+    const endpoint = `${environment.BaseApiURL}/products/count`; // Assuming there's an endpoint that provides the count of products
 
+    return this.http.get<number>(endpoint,this.httpHeader);
+  }
 
 
 }

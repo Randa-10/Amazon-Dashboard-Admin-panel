@@ -5,6 +5,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserAuthGuard } from './Guards/user-auth.guard';
 import { OrdersComponent } from './components/orders/orders.component';
+import { ProductListResolver } from './resolver/product-list.resolver'
 
 
 
@@ -18,7 +19,9 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent, title: 'dashboard page',canActivate: [UserAuthGuard]  },
+      { path: 'dashboard', component: DashboardComponent, title: 'dashboard page',canActivate: [UserAuthGuard] ,    resolve: {
+        numberOfProducts: ProductListResolver,
+      }, },
       { path: 'products', component: ProductsComponent, title: 'products page',canActivate: [UserAuthGuard]  },
       { path: 'updateProduct/:prodID', component: ProductsComponent, title: 'products page',canActivate: [UserAuthGuard]  },
       { path: 'orders', component: OrdersComponent, title: 'orders page' ,canActivate: [UserAuthGuard]} 
