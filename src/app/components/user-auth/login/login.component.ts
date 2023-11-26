@@ -68,4 +68,7 @@ export class LoginComponent implements OnInit{
     }
       )}
 }
+ngOnDestroy(){
+  location.reload()
+}
 }

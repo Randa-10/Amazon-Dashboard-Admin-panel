@@ -31,10 +31,10 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.cdr.detectChanges();
 
   }
-  itemsPerPage = 2;
+  itemsPerPage = 4;
   currentPage = 1;
   constructor(private productService: ProductService, private route: ActivatedRoute
-    , private http: HttpClient, private cdr: ChangeDetectorRef  // Inject ChangeDetectorRef
+    , private http: HttpClient, private cdr: ChangeDetectorRef , // Inject ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -66,15 +66,6 @@ export class DashboardComponent implements OnInit, OnChanges {
   }
 
 
-  // private handleApiResponse(response: any): void {
-  //   if (response.message === 'Products fetched successfully' && Array.isArray(response.data)) {
-  //     this.products = response.data;
-  //     console.log(this.products)
-
-  //   } else {
-  //     console.error('Invalid API response:', response);
-  //   }
-  // }
   get paginatedData() {
     const start = (this.currentPage - 1) * this.itemsPerPage;
     const end = start + this.itemsPerPage;

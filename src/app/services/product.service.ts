@@ -14,6 +14,7 @@ export class ProductService {
   constructor(private http: HttpClient) {
     this.httpHeader = {
       headers: new HttpHeaders({
+        // 'Authorization': `Bearer ${this.authToken}`,
         'Content-Type': 'application/json',
         'Authorization': `${this.authToken}`
       })

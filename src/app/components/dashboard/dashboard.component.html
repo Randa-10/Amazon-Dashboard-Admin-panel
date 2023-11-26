@@ -18,7 +18,7 @@
             alt="{{ product.en.title }}"
           />
         </td>
-        <td>{{ product.en.title }}</td>
+        <td >{{ product.en.title }}</td>
         <td>{{ product.ar.title }}</td>
         <td>
           <a [routerLink]="['/home/updateProduct', product._id]" class="">
@@ -31,10 +31,19 @@
       </tr>
     </tbody>
   </table>
-  <app-pagination
+  <!-- <app-pagination
     [totalItems]="numberOfProducts"
     [ItemsPerPage]="itemsPerPage"
     [currentPage]="currentPage"
     (onClick)="changPage($event)"
-  ></app-pagination>
+  ></app-pagination> -->
+  <div class="pagination-container">
+    <app-pagination 
+      [totalItems]="numberOfProducts"
+      [ItemsPerPage]="itemsPerPage"
+      [currentPage]="currentPage"
+      (onClick)="changPage($event)"
+    ></app-pagination>
+  </div>
+  
 </div>
