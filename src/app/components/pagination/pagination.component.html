@@ -1,0 +1,20 @@
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+        <a class="page-link" (click)="pageClicked(currentPage-1)" [attr.aria-disabled]="currentPage === 1 ? 'true' : 'false'">
+          Previous
+        </a>
+      </li>
+    <li
+    (click)="pageClicked(page)"
+      *ngFor="let page of pages"
+      class="page-item"
+      [ngClass]="{ active: page === currentPage }"
+    >
+      <a class="page-link" href="javascript:void(0)">{{ page }}</a>
+    </li>
+    <li>
+      <a class="page-link" (click)="pageClicked(currentPage+1)">Next</a>
+    </li>
+  </ul>
+</nav>

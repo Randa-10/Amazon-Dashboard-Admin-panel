@@ -27,9 +27,9 @@ export class ProductService {
   getProductByID(prodID: string): Observable<Products> {
     return this.http.get<Products>(`${environment.BaseApiURL}/products/admin/${prodID}`);
   }
-  updateProduct(prodID: string,product: Products): Observable<Products> {
-    console.log(prodID,product,"service");
-    
+  updateProduct(prodID: string, product: Products): Observable<Products> {
+    console.log(prodID, product, "service");
+
     return this.http.patch<Products>(`${environment.BaseApiURL}/products/${prodID}`, JSON.stringify(product), this.httpHeader).pipe(
       retry(2),
       //   catch
@@ -57,7 +57,12 @@ export class ProductService {
   deletProduct (proID:string):Observable<Products>{
     return this.http.delete<Products>(`${environment.BaseApiURL}/products/${proID}`,this.httpHeader);
   }
+  getNumberOfProducts(): Observable<number> {
+    // Adjust the endpoint based on your API
+    const endpoint = `${environment.BaseApiURL}/products/count`; // Assuming there's an endpoint that provides the count of products
 
+    return this.http.get<number>(endpoint,this.httpHeader);
+  }
 
 
 }
