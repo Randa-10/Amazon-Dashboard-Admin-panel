@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserAuthGuard } from './Guards/user-auth.guard';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductListResolver } from './resolver/product-list.resolver'
+import { ordersResolver } from './resolver/orders.resolver'
 
 
 
@@ -19,17 +20,23 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     children: [
-      { path: 'dashboard', component: DashboardComponent, title: 'dashboard page',canActivate: [UserAuthGuard] ,    resolve: {
-        numberOfProducts: ProductListResolver,
-      }, },
-      { path: 'products', component: ProductsComponent, title: 'products page',canActivate: [UserAuthGuard]  },
-      { path: 'updateProduct/:prodID', component: ProductsComponent, title: 'products page',canActivate: [UserAuthGuard]  },
-      { path: 'orders', component: OrdersComponent, title: 'orders page' ,canActivate: [UserAuthGuard]} 
+      {
+        path: 'dashboard', component: DashboardComponent, title: 'dashboard page', canActivate: [UserAuthGuard], resolve: {
+          numberOfProducts: ProductListResolver,
+        },
+      },
+      { path: 'products', component: ProductsComponent, title: 'products page', canActivate: [UserAuthGuard] },
+      { path: 'updateProduct/:prodID', component: ProductsComponent, title: 'products page', canActivate: [UserAuthGuard] },
+      {
+        path: 'orders', component: OrdersComponent, title: 'orders page', canActivate: [UserAuthGuard], resolve: {
+          orders:ordersResolver ,
+        },
+      }
       // ,{
       //   path: 'Users',
       //   loadChildren: () => import('./components/user-auth/user-auth.module').then(m => m.UserAuthModule)
       // },
-      ,{ path: '**', redirectTo: 'Users/login', pathMatch: 'full' } 
+      , { path: '**', redirectTo: 'Users/login', pathMatch: 'full' }
     ]
   }
 ];
@@ -40,4 +47,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
