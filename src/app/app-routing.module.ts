@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserAuthGuard } from './Guards/user-auth.guard';
 import { OrdersComponent } from './components/orders/orders.component';
 import { ProductListResolver } from './resolver/product-list.resolver';
+import { ordersResolver } from './resolver/orders.resolver';
 import { OverallComponent } from './components/overall/overall.component';
 
 const routes: Routes = [
@@ -47,6 +48,9 @@ const routes: Routes = [
         component: OrdersComponent,
         title: 'orders page',
         canActivate: [UserAuthGuard],
+        resolve: {
+          orders: ordersResolver,
+        },
       },
       {
         path: 'overall',
