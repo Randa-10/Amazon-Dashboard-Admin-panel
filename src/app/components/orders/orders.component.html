@@ -1,1 +1,77 @@
-<p>hi</p>
+<div class="container mt-3 h-100 border">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-bold fs-5">Total products Ordered</h5>
+            <p class="card-text text-center fw-bold text-success fs-5">{{orders.length}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-bold fs-4">Total Price of sales</h5>
+            <p class="card-text fw-bold text-success fs-5">{{totalSales}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title fw-bold fs-4">Net profit</h5>
+            <p class="card-text text-center fw-bold text-success fs-5">{{totalSales/10}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table mat-table [dataSource]="dataSource" matSort class="table">
+    <ng-container matColumnDef="orderID">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ProductID</th>
+      <td mat-cell *matCellDef="let product">{{ product.product._id }}</td>
+    </ng-container>
+    <!-- Product Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+      <td mat-cell *matCellDef="let product">{{ product.product.en.title }}</td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>image</th>
+      <td mat-cell *matCellDef="let product">
+        <img
+          [src]="product.product.thumbnail"
+          class="img-thumbnail"
+          alt="product image"
+        />
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+      <td mat-cell *matCellDef="let product">{{ product.quantity }}</td>
+    </ng-container>
+    <ng-container matColumnDef="totalPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>totalPrice</th>
+      <td mat-cell *matCellDef="let product">
+        {{ (+product.product.price || 0) * (+product.quantity || 0) }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    #paginator
+    style-paginator
+    [pageIndex]="0"
+    [pageSize]="2"
+    [length]="50"
+    [pageSizeOptions]="[4, 6, 8, 10]"
+  >
+  </mat-paginator>
+</div>

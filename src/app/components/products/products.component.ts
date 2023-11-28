@@ -128,6 +128,8 @@ get thum() {
       })
 
     } else if(this.productForm.valid&&!this.currentProductID) {
+      console.log(this.productForm.value);
+      
        const newProduct: Products = this.productForm.value;
       this.productService.SaveNewProduct(newProduct).subscribe({
         next: (data) => {
