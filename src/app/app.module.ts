@@ -14,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { OverallComponent } from './components/overall/overall.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     OrdersComponent,
     FooterComponent,
     PaginationComponent,
+    OverallComponent,
   ],
   imports: [
     BrowserModule,

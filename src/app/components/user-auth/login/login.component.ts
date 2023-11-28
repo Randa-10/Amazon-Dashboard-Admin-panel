@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
             }
           }).then((result) => {
             if (result.isConfirmed) {
-              this.router.navigate(['/home/dashboard']); 
+              this.router.navigate(['/home/overall']); 
             }
           })
 

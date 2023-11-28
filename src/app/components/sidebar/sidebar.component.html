@@ -3,7 +3,10 @@
       <i *ngIf="!isOpen||isHovered" class="fa-solid fa-list"></i>
       <span *ngIf="isOpen || isHovered">Amazon Dashboard</span>
     </button>
-  
+    <a routerLink="/home">
+      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-house"></i>
+       <span *ngIf="isOpen || isHovered">Dashboard</span>
+    </a>
     <a routerLink="/home/dashboard">
       <i *ngIf="!isOpen||isHovered" class="fa-solid fa-house"></i>
        <span *ngIf="isOpen || isHovered">Dashboard</span>

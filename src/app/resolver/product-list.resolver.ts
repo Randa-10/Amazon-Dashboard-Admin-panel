@@ -8,9 +8,9 @@ import { ProductService } from 'src/app/services/product.service';
 @Injectable({
     providedIn: 'root',
 })
-export class ProductListResolver implements Resolve<number> {
+export class ProductListResolver implements Resolve<{}> {
     constructor(private productService: ProductService) { }
-    resolve(): Observable<number> {
+    resolve(): Observable<{}> {
         return this.productService.getNumberOfProducts();
       }
    }
