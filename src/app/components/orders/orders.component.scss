@@ -19,17 +19,9 @@
     text-align: left;
     border-bottom: 1px solid #ddd;
   }
-  .fas{
-    cursor: pointer;
-  }
-  .fas1:hover{
-color: rgb(24, 82, 143);
-  }
-  .fas2:hover{
-   color: #8e1c14;
-  }
+
   .table th {
-    background-color: #343a40;
+    background-color: #092139;
     color: #fff;
   }
   .table img {
@@ -40,16 +32,6 @@ color: rgb(24, 82, 143);
   .btn {
     margin-right: 5px;
   }
-  
-  .fa-edit {
-    color: #007bff; 
-  }
-  
-  .fa-trash-alt {
-    color: #dc3545; 
-  }
-  
- 
   @media (max-width: 767px) {
     .table th,
     .table td {
@@ -64,13 +46,13 @@ color: rgb(24, 82, 143);
   
   }
   .mat-sort-header-arrow {
-    font-size: 16px; /* Default font size */
+    font-size: 16px; 
   }
   
   .mat-sort-header-arrow::before {
-    content: ''; /* Hide the default arrow content */
+    content: ''; 
   }
   
   .mat-sort-header-sorted .mat-sort-header-arrow {
-    font-size: 24px; /* Increase the font size when sorted */
+    font-size: 24px;
   }
