@@ -43,7 +43,7 @@ export class DashboardComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
      this.route.data.subscribe((data:any) => {
-      this.numberOfProducts = data.numberOfProducts.count;
+      this.numberOfProducts = data.numberOfProducts;
       console.log(this.numberOfProducts, "resolved numberOfProducts");
       this.getProducts();
     });
