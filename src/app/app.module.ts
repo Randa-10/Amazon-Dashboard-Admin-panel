@@ -18,6 +18,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule,MatTable } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +43,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatCardModule,
     MatTableModule, MatSortModule,
     MatPaginatorModule,
-    
+    MatProgressSpinnerModule,  
   ],
   providers: [MatPaginator],
   bootstrap: [AppComponent]

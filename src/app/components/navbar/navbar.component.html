@@ -3,9 +3,9 @@
       <div [ngClass]="{'open': isOpen}" class="sidebar" *ngIf="isLoggedIn" >
           <button (click)="toggleSidebar()" class="btn list btn-dark " ><i class="fa-solid fa-x icon"></i></button>
           <h5 class=" mt-2">Amazon Dashboard</h5>
-              <a routerLink="/home/dashboard"><i class="fa-solid fa-house"></i> Dashboard</a>
+              <a routerLink="/home/dashboard"><i class="fa-solid fa-code"></i> My product</a>
               <a routerLink="/home/products"><i class="fa-brands fa-product-hunt"></i>Add Products</a>
-              <a routerLink="/home/orders">Orders</a>        
+              <a routerLink="/home/orders"> <i class="fa-solid fa-cart-shopping"></i>Orders</a>        
            </div>
          <a class="navbar-brand col-md-4 col-sm-2  " >
          <button  class="btn list btn-dark d-block d-sm-none  " (click)="toggleSidebar()">

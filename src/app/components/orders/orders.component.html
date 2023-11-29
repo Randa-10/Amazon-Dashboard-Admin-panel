@@ -1,4 +1,6 @@
-<div class="container mt-3 h-100 border">
+<div *ngIf="isLoading" class="loader">
+  <mat-progress-spinner  mode="indeterminate"></mat-progress-spinner></div>
+<div class="container p-5 mt-3 h-100 border">
   <div class="container">
     <div class="row">
       <div class="col-md-4 col-sm-6 mb-3">

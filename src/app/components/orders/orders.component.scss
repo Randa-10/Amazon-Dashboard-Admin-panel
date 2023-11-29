@@ -1,3 +1,9 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 .container {
     margin-top: 20px;
     // height: 100vh;
@@ -21,7 +27,7 @@
   }
 
   .table th {
-    background-color: #092139;
+    background-color:#131921 ;
     color: #fff;
   }
   .table img {

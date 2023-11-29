@@ -15,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DashboardComponent implements OnInit, OnChanges {
   products: Products[] = [];
   private _numberOfProducts: number = 0;
+  isLoading = true;
 
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -35,7 +36,10 @@ export class DashboardComponent implements OnInit, OnChanges {
   currentPage = 1;
   constructor(private productService: ProductService, private route: ActivatedRoute
     , private http: HttpClient, private cdr: ChangeDetectorRef , // Inject ChangeDetectorRef
-  ) { }
+  ) { 
+   // this.loadData();
+
+  }
 
   ngOnInit(): void {
      this.route.data.subscribe((data:any) => {
@@ -50,16 +54,16 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.productService.getProducts().subscribe(
       (response: any) => {
         if (response && response.data) {
+          this.isLoading = false;
           this.numberOfProducts = response.data.length; // Update numberOfProducts
           this.products = response.data
-          // Manually trigger change detection
           this.cdr.detectChanges();
-          // Process the data as needed
         } else {
           console.error('Invalid type of products:', response);
         }
       },
       (error) => {
+        this.isLoading = false;
         console.error('Error fetching products:', error);
       }
     );

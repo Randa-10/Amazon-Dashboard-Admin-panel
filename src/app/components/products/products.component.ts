@@ -21,6 +21,7 @@ export class ProductsComponent implements OnInit {
   categories: Category[] = [];
  subCategory: Subcategory[] = [];
  SubSubcategory: SubSubcategory[] = [];
+ isLoading = true;
 
   constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute,
     private categoryService: CategoryService) {
@@ -116,11 +117,13 @@ get thum() {
       console.log(this.productForm.value, "form value");
       this.productService.updateProduct(this.currentProductID, this.productForm.value).subscribe({
         next: (data) => {
+          this.isLoading = false;
           console.log("updated prod:", data);
           alert("product updated successfully")
           this.router.navigate(['home/dashboard'])
         },
         error: (err) =>{
+          this.isLoading = false;
            alert(" please insert valid data")
           console.log(err) 
         }
@@ -133,6 +136,8 @@ get thum() {
        const newProduct: Products = this.productForm.value;
       this.productService.SaveNewProduct(newProduct).subscribe({
         next: (data) => {
+          this.isLoading = false;
+
           console.log('Product saved successfully:', data);
                 this.productForm.reset();
                 alert("Product saved successfully")
@@ -157,9 +162,11 @@ get thum() {
   getCategories(): void {
     this.categoryService.getCategories().subscribe(
       (response) => {
+        this.isLoading = false;
         this.categories = response;
       },
       (error) => {
+        this.isLoading = false;
         console.error('Error fetching categories:', error);
       }
     );
@@ -167,9 +174,11 @@ get thum() {
   getSubCategories(): void {
     this.categoryService.getsubCategories().subscribe(
       (response) => {
+        this.isLoading = false;
         this.subCategory = response;
       },
       (error) => {
+        this.isLoading = false;
         console.error('Error fetching categories:', error);
       }
     );
@@ -177,9 +186,11 @@ get thum() {
   getsubSubCategories(): void {
     this.categoryService.getsubSubCategories().subscribe(
       (response) => {
+        this.isLoading = false;
         this.SubSubcategory = response;
       },
       (error) => {
+        this.isLoading = false;
         console.error('Error fetching categories:', error);
       }
     );

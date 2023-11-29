@@ -3,10 +3,10 @@
       <i *ngIf="!isOpen||isHovered" class="fa-solid fa-list"></i>
       <span *ngIf="isOpen || isHovered">Amazon Dashboard</span>
     </button>
-  
+    <!-- <i class="fa-solid fa-house"></i> -->
     <a routerLink="/home/dashboard">
-      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-house"></i>
-       <span *ngIf="isOpen || isHovered">Dashboard</span>
+      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-code "></i>
+       <span *ngIf="isOpen || isHovered">My product</span>
     </a>
     <a routerLink="/home/products">
       <i *ngIf="!isOpen||isHovered" class="fa-brands fa-product-hunt"></i>
@@ -14,8 +14,9 @@
     </a>
 
     <a routerLink="/home/orders">
-      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-house"></i>
+      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-cart-shopping"></i>
       <span *ngIf="isOpen || isHovered">Orders</span>
     </a>
   </div>
+  <!-- <i class="fa-solid fa-cart-shopping"></i> -->
  
