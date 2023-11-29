@@ -21,6 +21,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { OverallComponent } from './components/overall/overall.component';
 import { ChartComponent } from './chart/chart.component';
+import { CardsComponent } from './components/cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ChartComponent } from './chart/chart.component';
     PaginationComponent,
     OverallComponent,
     ChartComponent,
+    CardsComponent,
   ],
   imports: [
     BrowserModule,

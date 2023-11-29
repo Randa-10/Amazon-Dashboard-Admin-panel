@@ -21,5 +21,6 @@ export interface Products {
       discountPercentage: number;
       rating: number;
       ratingQuantity: number;
+      adminId: number; // Assuming each product has an adminId property
 
 }
