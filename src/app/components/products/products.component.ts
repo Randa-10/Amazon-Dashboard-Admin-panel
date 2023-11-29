@@ -10,56 +10,60 @@ import { ProductService } from 'src/app/services/product.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  Btitle:string="Add Product";
-  Head:string="Add New Product"
+  Btitle: string = 'Add Product';
+  Head: string = 'Add New Product';
   product: Products = {} as Products;
   productForm!: FormGroup;
-  currentProductID: string = "";
+  currentProductID: string = '';
   categories: Category[] = [];
- subCategory: Subcategory[] = [];
- SubSubcategory: SubSubcategory[] = [];
- isLoading = true;
+  subCategory: Subcategory[] = [];
+  SubSubcategory: SubSubcategory[] = [];
+  isLoading = true;
 
-  constructor(private fb: FormBuilder, private productService: ProductService, private router: Router, private activatedRoute: ActivatedRoute,
-    private categoryService: CategoryService) {
-
-  }
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private categoryService: CategoryService
+  ) {}
   ngOnInit(): void {
     this.createForm();
-    this.activatedRoute.paramMap.subscribe(paramMap => {
-      this.currentProductID = (paramMap.get('prodID')) ? String((paramMap.get('prodID'))) : "";
+    this.activatedRoute.paramMap.subscribe((paramMap) => {
+      this.currentProductID = paramMap.get('prodID')
+        ? String(paramMap.get('prodID'))
+        : '';
       console.log(this.currentProductID);
 
       // let foundProd=this.prodService.getProductByID(this.currentProductID)
-      if(this.currentProductID.length>5){
-      this.productService.getProductByID(this.currentProductID).subscribe((foundProd: any) => {
-        const productData = foundProd.data;
+      if (this.currentProductID.length > 5) {
+        this.productService
+          .getProductByID(this.currentProductID)
+          .subscribe((foundProd: any) => {
+            const productData = foundProd.data;
 
-        if (productData) {
-          this.product = foundProd;
-          console.log(productData, "found product that you want to update");
-          this.Btitle="update product";
-          this.Head="update your  product"
+            if (productData) {
+              this.product = foundProd;
+              console.log(productData, 'found product that you want to update');
+              this.Btitle = 'update product';
+              this.Head = 'update your  product';
 
-          this.productForm.patchValue(productData)
-
-        } else {
-          this.router.navigate(['/home/sales'])
-
-        }
-      })}else{
+              this.productForm.patchValue(productData);
+            } else {
+              this.router.navigate(['/home/sales']);
+            }
+          });
+      } else {
         console.log(Error);
-        
       }
-    })
+    });
 
-    this.getCategories();  
-    this.getSubCategories()
-    this.getsubSubCategories()
-
+    this.getCategories();
+    this.getSubCategories();
+    this.getsubSubCategories();
   }
 
   private createForm(): void {
@@ -75,7 +79,15 @@ export class ProductsComponent implements OnInit {
         brand: ['', Validators.required],
       }),
       thumbnail: ['', Validators.required],
-      images: this.fb.array(['']),
+      images: this.fb.array(
+        [
+          this.fb.control('', Validators.required), // Image 1
+          this.fb.control('', Validators.required), // Image 2
+          this.fb.control('', Validators.required), // Image 3
+          this.fb.control('', Validators.required), // Image 4
+        ],
+        Validators.required // Ensure all fields are filled
+      ),
       category: ['', Validators.required],
       subCategory: ['', Validators.required],
       subSubCategor: ['', Validators.required],
@@ -85,80 +97,83 @@ export class ProductsComponent implements OnInit {
       discountPercentage: [0, Validators.required],
     });
   }
-//valisation//
-get enTitle() {
-  return this.productForm.get('en.title');
-}
+  //valisation//
+  get enTitle() {
+    return this.productForm.get('en.title');
+  }
 
-get arTitle() {
-  return this.productForm.get('ar.title');
-}
+  get arTitle() {
+    return this.productForm.get('ar.title');
+  }
 
-get enDescription() {
-  return this.productForm.get('en.description');
-}
-get arDescription() {
-  return this.productForm.get('ar.description');
-}
-get brand() {
-  return this.productForm.get('ar.brand');
-}
-get enbrand() {
-  return this.productForm.get('en.brand');
-}
-get thum() {
-  return this.productForm.get('thumbnail');
-}
-//////
+  get enDescription() {
+    return this.productForm.get('en.description');
+  }
+  get arDescription() {
+    return this.productForm.get('ar.description');
+  }
+  get brand() {
+    return this.productForm.get('ar.brand');
+  }
+  get enbrand() {
+    return this.productForm.get('en.brand');
+  }
+  get thum() {
+    return this.productForm.get('thumbnail');
+  }
+  get imagesArray() {
+    return this.productForm.get('images') as FormArray;
+  }
+
+  // Function to add new image URL control to the 'images' FormArray
+
+  //////
 
   onSubmit(): void {
     // / add new product and update existing product&&this.productForm.valid)
     if (this.currentProductID) {
-      console.log(this.productForm.value, "form value");
-      this.productService.updateProduct(this.currentProductID, this.productForm.value).subscribe({
-        next: (data) => {
-          this.isLoading = false;
-          console.log("updated prod:", data);
-          alert("product updated successfully")
-          this.router.navigate(['home/dashboard'])
-        },
-        error: (err) =>{
-          this.isLoading = false;
-           alert(" please insert valid data")
-          console.log(err) 
-        }
-      
-      })
-
-    } else if(this.productForm.valid&&!this.currentProductID) {
+      console.log(this.productForm.value, 'form value');
+      this.productService
+        .updateProduct(this.currentProductID, this.productForm.value)
+        .subscribe({
+          next: (data) => {
+            this.isLoading = false;
+            console.log('updated prod:', data);
+            alert('product updated successfully');
+            this.router.navigate(['home/dashboard']);
+          },
+          error: (err) => {
+            this.isLoading = false;
+            alert(' please insert valid data');
+            console.log(err);
+          },
+        });
+    } else if (this.productForm.valid && !this.currentProductID) {
       console.log(this.productForm.value);
-      
-       const newProduct: Products = this.productForm.value;
+
+      const newProduct: Products = this.productForm.value;
       this.productService.SaveNewProduct(newProduct).subscribe({
         next: (data) => {
           this.isLoading = false;
 
           console.log('Product saved successfully:', data);
-                this.productForm.reset();
-                alert("Product saved successfully")
-                this.router.navigate(['home/dashboard'])    
-                const selectedCategoryIdControl = this.productForm.get('category');
-  
-                if (selectedCategoryIdControl) {
-                  const selectedCategoryId = selectedCategoryIdControl.value;
-                  // console.log('Selected Category ID:',selectedCategoryId);
-                } else {
-                  console.error('Error: selectedCategoryId control is null.');
-                }   
-              
-              },
-        error: (err) =>
-        console.error('Error saving product:', err)
-      })
-    }
+          this.productForm.reset();
+          alert('Product saved successfully');
+          this.router.navigate(['home/dashboard']);
+          const selectedCategoryIdControl = this.productForm.get('category');
 
+          if (selectedCategoryIdControl) {
+            const selectedCategoryId = selectedCategoryIdControl.value;
+            // console.log('Selected Category ID:',selectedCategoryId);
+          } else {
+            console.error('Error: selectedCategoryId control is null.');
+          }
+        },
+        error: (err) => console.error('Error saving product:', err),
+      });
+    }
   }
-  
+
   getCategories(): void {
     this.categoryService.getCategories().subscribe(
       (response) => {
@@ -195,14 +210,4 @@ get thum() {
       }
     );
   }
-
 }
-
-
-
-
-
-
-
-
-
