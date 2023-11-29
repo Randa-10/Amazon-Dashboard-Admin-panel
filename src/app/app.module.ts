@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule,MatTable } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';import { OverallComponent } from './components/overall/overall.component';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';i
     FooterComponent,
     PaginationComponent,
     OverallComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
