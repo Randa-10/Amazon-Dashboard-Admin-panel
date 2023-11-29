@@ -58,6 +58,12 @@ const routes: Routes = [
         title: 'overall',
         canActivate: [UserAuthGuard],
       },
+      {
+        path: 'clients',
+        component: OrdersComponent,
+        title: 'clients page',
+        canActivate: [UserAuthGuard],
+      },
       // ,{
       //   path: 'Users',
       //   loadChildren: () => import('./components/user-auth/user-auth.module').then(m => m.UserAuthModule)
