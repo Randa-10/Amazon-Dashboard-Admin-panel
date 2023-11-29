@@ -15,10 +15,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { MatCardModule } from '@angular/material/card';
-import { MatTableModule,MatTable } from '@angular/material/table';
+import { MatTableModule, MatTable } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { OverallComponent } from './components/overall/overall.component';
+import { ChartComponent } from './chart/chart.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     OrdersComponent,
     FooterComponent,
     PaginationComponent,
+    OverallComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,11 +45,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCardModule,
-    MatTableModule, MatSortModule,
+    MatTableModule,
+    MatSortModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule,  
+    MatProgressSpinnerModule,
   ],
   providers: [MatPaginator],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

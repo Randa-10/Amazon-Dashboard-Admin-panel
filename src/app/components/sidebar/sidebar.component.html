@@ -1,22 +1,31 @@
-<div *ngIf="isLoggedIn" [ngClass]="{'open': isOpen}" class="sidebar" (mouseenter)="openSidebar()" (mouseleave)="closeSidebar()">
-    <button (click)="toggleSidebar()" class="btn btn-dark">
-      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-list"></i>
-      <span *ngIf="isOpen || isHovered">Amazon Dashboard</span>
-    </button>
-    <!-- <i class="fa-solid fa-house"></i> -->
-    <a routerLink="/home/dashboard">
-      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-code "></i>
-       <span *ngIf="isOpen || isHovered">My product</span>
-    </a>
-    <a routerLink="/home/products">
-      <i *ngIf="!isOpen||isHovered" class="fa-brands fa-product-hunt"></i>
-       <span *ngIf="isOpen || isHovered">Add Products</span>
-    </a>
+<div
+  *ngIf="isLoggedIn"
+  [ngClass]="{ open: isOpen }"
+  class="sidebar"
+  (mouseenter)="openSidebar()"
+  (mouseleave)="closeSidebar()"
+>
+  <button (click)="toggleSidebar()" class="btn btn-dark">
+    <i *ngIf="!isOpen || isHovered" class="fa-solid fa-list"></i>
+    <span *ngIf="isOpen || isHovered">Amazon Dashboard</span>
+  </button>
+  <!-- <i class="fa-solid fa-house"></i> -->
+  <a routerLink="/home/overall">
+    <i *ngIf="!isOpen || isHovered" class="fa-solid fa-chart-simple p-2"></i>
+    <span *ngIf="isOpen || isHovered">Statistic</span>
+  </a>
+  <a routerLink="/home/dashboard">
+    <i *ngIf="!isOpen || isHovered" class="fa-solid fa-code"></i>
+    <span *ngIf="isOpen || isHovered">My product</span>
+  </a>
+  <a routerLink="/home/products">
+    <i *ngIf="!isOpen || isHovered" class="fa-brands fa-product-hunt"></i>
+    <span *ngIf="isOpen || isHovered">Add Products</span>
+  </a>
 
-    <a routerLink="/home/orders">
-      <i *ngIf="!isOpen||isHovered" class="fa-solid fa-cart-shopping"></i>
-      <span *ngIf="isOpen || isHovered">Orders</span>
-    </a>
-  </div>
-  <!-- <i class="fa-solid fa-cart-shopping"></i> -->
- 
+  <a routerLink="/home/orders">
+    <i *ngIf="!isOpen || isHovered" class="fa-solid fa-cart-shopping"></i>
+    <span *ngIf="isOpen || isHovered">Orders</span>
+  </a>
+</div>
+<!-- <i class="fa-solid fa-cart-shopping"></i> -->
