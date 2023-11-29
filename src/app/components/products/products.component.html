@@ -1,4 +1,3 @@
-
 <div class="container-fluid">
   <h2>{{ Head }}</h2>
   <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product">
@@ -7,27 +6,60 @@
       <div class="col-md-6">
         <div formGroupName="en" class="mb-3">
           <label for="enTitle" class="form-label">English Title:</label>
-          <input type="text" id="enTitle" name="title" minlength="4" formControlName="title"
-            [ngClass]="{'is-invalid': (enTitle?.touched || enTitle?.dirty) && enTitle?.invalid}" required
-            class="form-control" />
+          <input
+            type="text"
+            id="enTitle"
+            name="title"
+            minlength="4"
+            formControlName="title"
+            [ngClass]="{
+              'is-invalid':
+                (enTitle?.touched || enTitle?.dirty) && enTitle?.invalid
+            }"
+            required
+            class="form-control"
+          />
           <span class="invalid-feedback">
             <span *ngIf="enTitle?.errors?.['required']">Title is required</span>
           </span>
         </div>
         <div formGroupName="en" class="mb-3">
-          <label for="enDescription" class="form-label">English Description:</label>
-          <textarea id="enDescription" name="description" minlength="10" formControlName="description"
-            [ngClass]="{'is-invalid': (enDescription?.touched || enDescription?.dirty) && enDescription?.invalid}"
-            required class="form-control"></textarea>
+          <label for="enDescription" class="form-label"
+            >English Description:</label
+          >
+          <textarea
+            id="enDescription"
+            name="description"
+            minlength="10"
+            formControlName="description"
+            [ngClass]="{
+              'is-invalid':
+                (enDescription?.touched || enDescription?.dirty) &&
+                enDescription?.invalid
+            }"
+            required
+            class="form-control"
+          ></textarea>
           <span class="invalid-feedback">
-            <span *ngIf="enDescription?.errors?.['required']">Description is required.</span>
+            <span *ngIf="enDescription?.errors?.['required']"
+              >Description is required.</span
+            >
           </span>
         </div>
         <div formGroupName="en" class="mb-3">
           <label for="enBrand" class="form-label">English Brand:</label>
-          <input type="text" id="enBrand" name="brand" formControlName="brand"
-            [ngClass]="{'is-invalid': (enbrand?.touched || enbrand?.dirty) && enbrand?.invalid}" required
-            class="form-control" />
+          <input
+            type="text"
+            id="enBrand"
+            name="brand"
+            formControlName="brand"
+            [ngClass]="{
+              'is-invalid':
+                (enbrand?.touched || enbrand?.dirty) && enbrand?.invalid
+            }"
+            required
+            class="form-control"
+          />
           <span class="invalid-feedback">
             <span *ngIf="enbrand?.errors?.['required']">Brand is required</span>
           </span>
@@ -40,91 +72,199 @@
       <div class="col-md-6">
         <div formGroupName="ar" class="mb-3">
           <label for="arTitle" class="form-label">Arabic Title:</label>
-          <input type="text" id="arTitle" name="title" minlength="4" formControlName="title"
-            [ngClass]="{'is-invalid': (arTitle?.touched || arTitle?.dirty) && arTitle?.invalid}" required
-            class="form-control" />
+          <input
+            type="text"
+            id="arTitle"
+            name="title"
+            minlength="4"
+            formControlName="title"
+            [ngClass]="{
+              'is-invalid':
+                (arTitle?.touched || arTitle?.dirty) && arTitle?.invalid
+            }"
+            required
+            class="form-control"
+          />
           <span class="invalid-feedback">
             <span *ngIf="arTitle?.errors?.['required']">Title is required</span>
           </span>
         </div>
         <div formGroupName="ar" class="mb-3">
-          <label for="arDescription" class="form-label">Arabic Description:</label>
-          <textarea id="arDescription" name="description" minlength="10" formControlName="description"
-            [ngClass]="{'is-invalid': (arDescription?.touched || arDescription?.dirty) && arDescription?.invalid}"
-            required class="form-control"></textarea>
+          <label for="arDescription" class="form-label"
+            >Arabic Description:</label
+          >
+          <textarea
+            id="arDescription"
+            name="description"
+            minlength="10"
+            formControlName="description"
+            [ngClass]="{
+              'is-invalid':
+                (arDescription?.touched || arDescription?.dirty) &&
+                arDescription?.invalid
+            }"
+            required
+            class="form-control"
+          ></textarea>
           <span class="invalid-feedback">
-            <span *ngIf="arDescription?.errors?.['required']">Description is required.</span>
+            <span *ngIf="arDescription?.errors?.['required']"
+              >Description is required.</span
+            >
           </span>
         </div>
         <div formGroupName="ar" class="mb-3">
           <label for="arBrand" class="form-label">Arabic Brand:</label>
-          <input type="text" id="arBrand" name="brand" formControlName="brand"
-            [ngClass]="{'is-invalid': (brand?.touched || brand?.dirty) && brand?.invalid}" required
-            class="form-control" />
+          <input
+            type="text"
+            id="arBrand"
+            name="brand"
+            formControlName="brand"
+            [ngClass]="{
+              'is-invalid': (brand?.touched || brand?.dirty) && brand?.invalid
+            }"
+            required
+            class="form-control"
+          />
           <span class="invalid-feedback">
             <span *ngIf="brand?.errors?.['required']">Brand is required</span>
           </span>
         </div>
         <!-- ... (Other Arabic fields) -->
       </div>
- 
 
-    <!-- Additional Fields -->
-    <div class="mb-3">
-      <label for="thumbnail" class="form-label">Thumbnail URL:</label>
-      <input type="text" id="thumbnail" name="thumbnail" formControlName="thumbnail"
-        [ngClass]="{'is-invalid': (thum?.touched || thum?.dirty) && thum?.invalid}" required class="form-control" />
-      <span class="invalid-feedback">
-        <span *ngIf="thum?.errors?.['required']">Thumbnail URL required</span>
-      </span>
-    </div>
-    <div class="mb-3">
-      <label for="images" class="form-label">images:</label>
-        <input type="text" id="images" class="form-control" formControlName="images">
-      </div> 
+      <!-- Additional Fields -->
+      <div class="mb-3">
+        <label for="thumbnail" class="form-label">Thumbnail URL:</label>
+        <input
+          type="text"
+          id="thumbnail"
+          name="thumbnail"
+          formControlName="thumbnail"
+          [ngClass]="{
+            'is-invalid': (thum?.touched || thum?.dirty) && thum?.invalid
+          }"
+          required
+          class="form-control"
+        />
+        <span class="invalid-feedback">
+          <span *ngIf="thum?.errors?.['required']">Thumbnail URL required</span>
+        </span>
+      </div>
+      <div class="mb-3">
+        <div formArrayName="images">
+          <div *ngFor="let imageControl of imagesArray.controls; let i = index">
+            <div class="mb-3">
+              <label [for]="'image_' + i" class="form-label"
+                >Image {{ i + 1 }}:</label
+              >
+              <input
+                [id]="'image_' + i"
+                type="text"
+                class="form-control"
+                [formControlName]="i"
+                [ngClass]="{
+                  'is-invalid':
+                    (imageControl?.touched || imageControl?.dirty) &&
+                    imageControl?.invalid
+                }"
+              />
+              <span class="invalid-feedback">
+                <span *ngIf="imageControl?.errors?.['required']"
+                  >Image URL is required</span
+                >
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="mb-3">
         <label for="category" class="form-label">Select a Category:</label>
         <select id="category" class="form-select" formControlName="category">
-          <option *ngFor="let category of categories" [value]="category._id">{{ category.en.name }}</option>
+          <option *ngFor="let category of categories" [value]="category._id">
+            {{ category.en.name }}
+          </option>
         </select>
       </div>
       <div class="mb-3">
         <label for="subCategory" class="form-label">Select a SubCategor:</label>
-        <select id="subCategory" class="form-select" formControlName="subCategory">
-          <option *ngFor="let Subcategory of subCategory" [value]="Subcategory._id">{{Subcategory.en.name }}</option>
+        <select
+          id="subCategory"
+          class="form-select"
+          formControlName="subCategory"
+        >
+          <option
+            *ngFor="let Subcategory of subCategory"
+            [value]="Subcategory._id"
+          >
+            {{ Subcategory.en.name }}
+          </option>
         </select>
       </div>
       <div class="mb-3">
-        <label for="subSubCategor" class="form-label">Select a subSubCategor:</label>
-        <select id="subSubCategor" class="form-select" formControlName="subSubCategor">
-          <option *ngFor="let SubSubcategory of SubSubcategory" [value]="SubSubcategory._id">{{SubSubcategory.en.name }}</option>
+        <label for="subSubCategor" class="form-label"
+          >Select a subSubCategor:</label
+        >
+        <select
+          id="subSubCategor"
+          class="form-select"
+          formControlName="subSubCategor"
+        >
+          <option
+            *ngFor="let SubSubcategory of SubSubcategory"
+            [value]="SubSubcategory._id"
+          >
+            {{ SubSubcategory.en.name }}
+          </option>
         </select>
       </div>
 
       <div class="mb-3">
         <label for="sku" class="form-label">sku:</label>
-        <input type="text" id="sku" class="form-control" formControlName="sku">
+        <input
+          type="text"
+          id="sku"
+          class="form-control"
+          formControlName="sku"
+        />
       </div>
       <div class="mb-3">
         <label for="quantityInStock" class="form-label">quantityInStock:</label>
-        <input type="text" id="quantityInStock" class="form-control" formControlName="quantityInStock">
-      </div> 
+        <input
+          type="text"
+          id="quantityInStock"
+          class="form-control"
+          formControlName="quantityInStock"
+        />
+      </div>
       <div class="mb-3">
         <label for="price" class="form-label">price:</label>
-        <input type="text" id="price" class="form-control" formControlName="price">
-      </div> 
+        <input
+          type="text"
+          id="price"
+          class="form-control"
+          formControlName="price"
+        />
+      </div>
       <div class="mb-3">
-        <label for="discountPercentage" class="form-label">discountPercentage:</label>
-        <input type="text" id="discountPercentage" class="form-control" formControlName="discountPercentage">
-      </div> 
-    <div class="mb-3 ">
-      <button type="submit" class="btn btn-dark col-12" [disabled]="productForm.invalid">{{ Btitle }}</button>
-    </div>  
-   </div>
+        <label for="discountPercentage" class="form-label"
+          >discountPercentage:</label
+        >
+        <input
+          type="text"
+          id="discountPercentage"
+          class="form-control"
+          formControlName="discountPercentage"
+        />
+      </div>
+      <div class="mb-3">
+        <button
+          type="submit"
+          class="btn btn-dark col-12"
+          [disabled]="productForm.invalid"
+        >
+          {{ Btitle }}
+        </button>
+      </div>
+    </div>
   </form>
 </div>
-
-
-
-
-
