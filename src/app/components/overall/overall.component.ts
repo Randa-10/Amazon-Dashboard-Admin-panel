@@ -15,7 +15,7 @@ import { ProductService } from 'src/app/services/product.service';
   templateUrl: './overall.component.html',
   styleUrls: ['./overall.component.scss'],
 })
-export class OverallComponent implements AfterViewInit {
+export class OverallComponent {
   @ViewChildren('acquisitionsChart') acquisitionsCharts!: QueryList<ElementRef>;
   products: any[] = [];
   chartInstance: Chart | null = null;
@@ -27,17 +27,8 @@ export class OverallComponent implements AfterViewInit {
 
   ngOnInit() {
     this.getProducts();
-    this.orders();
   }
 
-  ngAfterViewInit() {
-    // Access acquisitionsChart only after it's available in the DOM
-    // if (this.acquisitionsChart) {
-    //   this.createChart();
-    // } else {
-    //   console.error('acquisitionsChart is not available yet.');
-    // }
-  }
   createChartFromServiceA(data: any[]): void {
     // Chart creation logic for Service A's data
     const chartData = data.map((item) => ({
@@ -45,10 +36,28 @@ export class OverallComponent implements AfterViewInit {
       rating: +item.rating,
     }));
 
-    const chartElement = this.acquisitionsCharts.first.nativeElement; // Using first element for the chart
+    const chartElement = this.acquisitionsCharts.first.nativeElement;
 
     const newChart = new Chart(chartElement, {
       type: 'bar',
+      options: {
+        animation: false,
+        plugins: {
+          legend: {
+            display: true,
+          },
+          tooltip: {
+            enabled: true,
+          },
+          title: {
+            display: true,
+            text: 'Rating For Products',
+            font: {
+              size: 32, // Change this to your desired font size
+            },
+          },
+        },
+      },
       data: {
         labels: chartData.map((row) => row.title),
         datasets: [
@@ -62,19 +71,15 @@ export class OverallComponent implements AfterViewInit {
   }
 
   createChartFromServiceB(data: any[]): void {
-    console.log(data);
-    // Chart creation logic for Service B's data
     const chartData = data.map((item) => ({
-      title: item.product.en.title
-        ? item.product.en.title.toString()
-        : 'Unknown',
-      value: +item.quantity,
+      title: item.en.title ? item.en.title.toString() : 'Unknown',
+      quantityInStock: +item.quantityInStock,
     }));
 
-    const chartElement = this.acquisitionsCharts.last.nativeElement; // Using last element for the chart
+    const chartElement = this.acquisitionsCharts.last.nativeElement; // Using first element for the chart
 
     const newChart = new Chart(chartElement, {
-      type: 'bar',
+      type: 'polarArea',
       options: {
         animation: false,
         plugins: {
@@ -84,104 +89,33 @@ export class OverallComponent implements AfterViewInit {
           tooltip: {
             enabled: true,
           },
+          title: {
+            display: true,
+            text: 'Quantity In Stock',
+            font: {
+              size: 32, // Change this to your desired font size
+            },
+          },
         },
       },
       data: {
         labels: chartData.map((row) => row.title),
         datasets: [
           {
-            label: 'Quantity was Orderd',
-            data: chartData.map((row) => row.value),
+            label: 'Quantity In Stock',
+            data: chartData.map((row) => row.quantityInStock),
           },
         ],
       },
     });
   }
-  // createChartForProductsQuantity(data: any[]): void {
-  //   console.log(data);
-  //   // Chart creation logic for Service B's data
-  //   const chartData = data.map((product) => ({
-  //     title: product.en.title ? product.en.title.toString() : 'Unknown',
-  //     value: +product.quantityInStock,
-  //   }));
-
-  //   const chartElement = this.acquisitionsCharts.last.nativeElement; // Using last element for the chart
-
-  //   const newChart = new Chart(chartElement, {
-  //     type: 'bar',
-  //     options: {
-  //       animation: false,
-  //       plugins: {
-  //         legend: {
-  //           display: true,
-  //         },
-  //         tooltip: {
-  //           enabled: true,
-  //         },
-  //       },
-  //     },
-  //     data: {
-  //       labels: chartData.map((row) => row.title),
-  //       datasets: [
-  //         {
-  //           label: 'Quantity was Orderd',
-  //           data: chartData.map((row) => row.value),
-  //         },
-  //       ],
-  //     },
-  //   });
-  // }
-
-  // private createChart() {
-  //   const data = this.products.map((product) => {
-  //     return {
-  //       title: product.en.title ? product.en.title.toString() : 'Unknown',
-  //       rating: +product.rating,
-  //     };
-  //   });
-
-  //   const chartElement = this.acquisitionsChart.nativeElement;
-
-  //   // Destroy the previous chart instance if it exists
-  //   if (this.chartInstance) {
-  //     this.chartInstance.destroy();
-  //   }
-
-  //   this.chartInstance = new Chart(chartElement, {
-  //     type: 'bar',
-  //     data: {
-  //       labels: data.map((row) => row.title),
-  //       datasets: [
-  //         {
-  //           label: 'Rating For Your Products',
-  //           data: data.map((row) => row.rating),
-  //         },
-  //       ],
-  //     },
-  //   });
-  // }
 
   getProducts(): void {
     this.productService.getProducts().subscribe(
       (response: any) => {
         if (response && response.data) {
           this.createChartFromServiceA(response.data);
-          // this.createChartForProductsQuantity(response.data);
-        } else {
-          console.error('Invalid data from Service A:', response);
-        }
-      },
-      (error) => {
-        console.error('Error fetching products:', error);
-      }
-    );
-  }
-  orders(): void {
-    this.orderService.getOrders().subscribe(
-      (response: any) => {
-        console.log(response.orderedProducts);
-        if (response && response.orderedProducts) {
-          this.createChartFromServiceB(response.orderedProducts);
+          this.createChartFromServiceB(response.data);
         } else {
           console.error('Invalid data from Service A:', response);
         }

@@ -19,38 +19,57 @@ export class ChartComponent {
   ) {}
 
   ngOnInit() {
-    this.getProducts();
+    this.orders();
   }
 
-  createChartFromServiceA(data: any[]): void {
-    // Chart creation logic for Service A's data
-    const chartData = data.map((item) => ({
-      title: item.en.title ? item.en.title.toString() : 'Unknown',
-      quantityInStock: +item.quantityInStock,
-    }));
+  createChartForOrder(data: any[]): void {  const chartData = data.map((item) => ({
+    title: item.product.en.title
+      ? item.product.en.title.toString()
+      : 'Unknown',
+    value: +item.quantity,
+  }));
 
-    const chartElement = this.acquisitionsCharts.first.nativeElement; // Using first element for the chart
+  const chartElement = this.acquisitionsCharts.last.nativeElement;
 
-    const newChart = new Chart(chartElement, {
-      type: 'polarArea',
-      data: {
-        labels: chartData.map((row) => row.title),
-        datasets: [
-          {
-            label: 'Quantity In Stock',
-            data: chartData.map((row) => row.quantityInStock),
+  const newChart = new Chart(chartElement, {
+    type: 'bar',
+    options: {
+      animation: false,
+      plugins: {
+        legend: {
+          display: true,
+        },
+        tooltip: {
+          enabled: true,
+        },
+        title: {
+          display: true,
+          text: 'Quantity was Orderd',
+          font: {
+            size: 32, // Change this to your desired font size
           },
-        ],
+        },
       },
-    });
+    },
+    data: {
+      labels: chartData.map((row) => row.title),
+      datasets: [
+        {
+          label: 'Quantity was Orderd',
+          data: chartData.map((row) => row.value),
+        },
+      ],
+    },
+  });
+    
   }
 
-  getProducts(): void {
-    this.productService.getProducts().subscribe(
+  orders(): void {
+    this.orderService.getOrders().subscribe(
       (response: any) => {
-        if (response && response.data) {
-          this.createChartFromServiceA(response.data);
-          // this.createChartForProductsQuantity(response.data);
+        console.log(response.orderedProducts);
+        if (response && response.orderedProducts) {
+          this.createChartForOrder(response.orderedProducts);
         } else {
           console.error('Invalid data from Service A:', response);
         }
