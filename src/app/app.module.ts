@@ -21,8 +21,8 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { OverallComponent } from './components/overall/overall.component';
 import { ChartComponent } from './chart/chart.component';
-import { ClientsComponent } from './components/clients/clients/clients.component';
 import { ClientListComponent } from './components/clients/client-list/client-list.component';
+import { ClientsComponent } from './components/clients/clients.component';
 
 @NgModule({
   declarations: [

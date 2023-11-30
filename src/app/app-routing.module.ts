@@ -8,6 +8,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { ProductListResolver } from './resolver/product-list.resolver';
 import { ordersResolver } from './resolver/orders.resolver';
 import { OverallComponent } from './components/overall/overall.component';
+import { ClientsComponent } from './components/clients/clients.component';
 
 const routes: Routes = [
   {
@@ -60,7 +61,7 @@ const routes: Routes = [
       },
       {
         path: 'clients',
-        component: OrdersComponent,
+        component: ClientsComponent,
         title: 'clients page',
         canActivate: [UserAuthGuard],
       },

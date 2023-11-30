@@ -22,4 +22,7 @@ authToken = localStorage.getItem('userToken');
   getOrders(): Observable<any[]> {
     return this.http.get<any[]>(`${environment.BaseApiURL}/order/adminOrders`, this.httpHeader);
   }
+  getClients(): Observable<any[]> {
+    return this.http.get<any[]>(`${environment.BaseApiURL}/order/adminClients`, this.httpHeader);
+  }
 }
