@@ -1,39 +1,72 @@
-<nav class="navbar navbar-expand-lg navbar-dark ">
+<nav class="navbar navbar-expand-lg navbar-dark">
   <div class="container-fluid">
-      <div [ngClass]="{'open': isOpen}" class="sidebar" *ngIf="isLoggedIn" >
-          <button (click)="toggleSidebar()" class="btn list btn-dark " ><i class="fa-solid fa-x icon"></i></button>
-          <h5 class=" mt-2">Amazon Dashboard</h5>
-             <a routerLink="/home/overall"><i class="fa-solid fa-chart-simple p-2"></i> Statistic</a>
-              <a routerLink="/home/dashboard"><i class="fa-solid fa-code"></i> My product</a>
-              <a routerLink="/home/products"><i class="fa-brands fa-product-hunt"></i>Add Products</a>
-              <a routerLink="/home/orders"> <i class="fa-solid fa-cart-shopping"></i>Orders</a>        
-              <a routerLink="/home/clients"> <i class="fa-brands fa-intercom"></i>My CustomersData</a>        
-            </div>
-         <a class="navbar-brand col-md-4 col-sm-2  " >
-         <button  class="btn list btn-dark d-block d-sm-none  " (click)="toggleSidebar()">
-         <i class="fa-solid fa-list"></i> 
-         <img src="./assets/amzon-logo.png" height="30vh" />
-         </button>
+    <div [ngClass]="{ open: isOpen }" class="sidebar" *ngIf="isLoggedIn">
+      <button (click)="toggleSidebar()" class="btn list btn-dark">
+        <i class="fa-solid fa-x icon"></i>
+      </button>
+      <h5 class="mt-2">Amazon Dashboard</h5>
+      <a routerLink="/home/overall"
+        ><i class="fa-solid fa-chart-simple p-2"></i> Statistic</a
+      >
+      <a routerLink="/home/dashboard"
+        ><i class="fa-solid fa-code"></i> My product</a
+      >
+      <a routerLink="/home/products"
+        ><i class="fa-brands fa-product-hunt"></i>Add Products</a
+      >
+      <a routerLink="/home/orders">
+        <i class="fa-solid fa-cart-shopping"></i>Orders</a
+      >
+      <a routerLink="/home/clients">
+        <i class="fa-brands fa-intercom"></i>My CustomersData</a
+      >
+    </div>
+    <a class="navbar-brand col-md-4 col-sm-2">
+      <button
+        class="btn list btn-dark d-block d-sm-none"
+        (click)="toggleSidebar()"
+      >
+        <i class="fa-solid fa-list"></i>
+        <img src="./assets/amzon-logo.png" height="30vh" />
+      </button>
 
-         <button  class="btn list btn-dark d-none d-sm-block  ">
-         <!-- <i class="fa-solid fa-list"></i>  -->
-         <img src="./assets/amzon-logo.png" height="30vh" />
-         </button>
-         </a> 
+      <button class="btn list btn-dark d-none d-sm-block">
+        <!-- <i class="fa-solid fa-list"></i>  -->
+        <img src="./assets/amzon-logo.png" height="30vh" />
+      </button>
+    </a>
     <!-- <img src="./assets/amzon-logo.png" height="30vh" /> -->
-    <div class="col-sm-5 d-flex justify-content-end " id="navbarNav">
+    <div class="col-sm-5 d-flex justify-content-end" id="navbarNav">
       <div class="ml-auto">
-        <button class="btn btn-light mx-2" [routerLink]="'Users/login'"*ngIf="!isLoggedIn"  [disabled]="isLoggedIn" >Login</button>
-        <button class="btn btn-warning" [routerLink]="'Users/sign-up'" *ngIf="!isLoggedIn">Sign Up</button>
-        <button class="btn btn-warning" [routerLink]="'Users/login'" (click)="logout()" *ngIf="isLoggedIn" [disabled]="!isLoggedIn">Logout</button>
-        
-        <a type="button" class="mx-2" [ngStyle]="{ 'color': 'white'}" >
-         <i   class="fa-solid fa-earth-americas"></i> 
-      </a>
-  </div>
-</div>
+        <button
+          class="btn btn-light mx-2"
+          [routerLink]="'Users/login'"
+          *ngIf="!isLoggedIn"
+          [disabled]="isLoggedIn"
+        >
+          Login
+        </button>
+        <button
+          class="btn btn-warning"
+          [routerLink]="'Users/sign-up'"
+          *ngIf="!isLoggedIn"
+        >
+          Sign Up
+        </button>
+        <button
+          class="btn btn-warning"
+          [routerLink]="'Users/login'"
+          (click)="logout()"
+          *ngIf="isLoggedIn"
+          [disabled]="!isLoggedIn"
+        >
+          Logout
+        </button>
 
+        <a type="button" class="mx-2" [ngStyle]="{ color: 'white' }">
+          <i class="fa-solid fa-earth-americas"></i>
+        </a>
+      </div>
+    </div>
   </div>
 </nav>
-
-
