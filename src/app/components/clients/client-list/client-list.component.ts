@@ -10,7 +10,6 @@ export class ClientListComponent implements OnInit {
   @Input() DataLength: number;
   itemsPerPage = 1;
   currentPage = 1;
-
   ngOnInit(): void {
     console.log('Input received in ngOnInit:', this.data, this.DataLength);
 

@@ -10,6 +10,8 @@ export class ClientsComponent implements OnDestroy {
   dataLoaded = false;
   data: any = [];
   DataLength:number=0;
+  isLoading = true;
+
   constructor(private orderSrv:OrderServService) {
     this.getClients()  
     setTimeout(() => {
@@ -19,7 +21,9 @@ export class ClientsComponent implements OnDestroy {
   getClients(): any {
     this.orderSrv.getClients().subscribe(
       (response:any) => {
+        this.isLoading = false;
         if(response.message=='success'){
+          this.isLoading = false;
           this.data=response.clients
           this.DataLength=this.data.length
         }else{
@@ -27,6 +31,8 @@ export class ClientsComponent implements OnDestroy {
         }
         },
       (error) => {
+        this.isLoading = false;
+
         console.error('Error getting clients', error);
       }
     );

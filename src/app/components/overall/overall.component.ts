@@ -19,6 +19,7 @@ export class OverallComponent {
   @ViewChildren('acquisitionsChart') acquisitionsCharts!: QueryList<ElementRef>;
   products: any[] = [];
   chartInstance: Chart | null = null;
+  isLoading = true;
 
   constructor(
     private productService: ProductService,
@@ -31,6 +32,7 @@ export class OverallComponent {
 
   createChartFromServiceA(data: any[]): void {
     // Chart creation logic for Service A's data
+    this.isLoading = false;
     const chartData = data.map((item) => ({
       title: item.en.title ? item.en.title.toString() : 'Unknown',
       rating: +item.rating,
@@ -113,6 +115,7 @@ export class OverallComponent {
   getProducts(): void {
     this.productService.getProducts().subscribe(
       (response: any) => {
+        this.isLoading = false;
         if (response && response.data) {
           this.createChartFromServiceA(response.data);
           this.createChartFromServiceB(response.data);
@@ -121,6 +124,7 @@ export class OverallComponent {
         }
       },
       (error) => {
+        this.isLoading = false;
         console.error('Error fetching products:', error);
       }
     );

@@ -1,25 +1,32 @@
-import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Chart } from 'chart.js';
 import { ProductService } from '../services/product.service';
 import { OrderServService } from '../services/order-serv.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.scss'],
 })
-export class ChartComponent {
+export class ChartComponent implements OnInit {
   @ViewChildren('acquisitionsChart') acquisitionsCharts!: QueryList<ElementRef>;
   products: any[] = [];
   chartInstance: Chart | null = null;
+  orderCount: number = 0; 
+  productCount$: Observable<number>;
+  isLoading = true;
 
   constructor(
     private productService: ProductService,
-    private orderService: OrderServService
+    private orderService: OrderServService,
+ 
   ) {}
 
   ngOnInit() {
     this.orders();
+    this.isLoading = false;
+    this.productCount$ = this.productService.getNumberOfProducts(); 
   }
 
   createChartForOrder(data: any[]): void {  const chartData = data.map((item) => ({
@@ -46,7 +53,7 @@ export class ChartComponent {
           display: true,
           text: 'Quantity was Orderd',
           font: {
-            size: 32, // Change this to your desired font size
+            size: 32,
           },
         },
       },
@@ -57,16 +64,17 @@ export class ChartComponent {
         {
           label: 'Quantity was Orderd',
           data: chartData.map((row) => row.value),
-        },
+        }
       ],
     },
   });
-    
+  this.orderCount = data.length;
   }
 
   orders(): void {
     this.orderService.getOrders().subscribe(
       (response: any) => {
+        // this.isLoading = false;
         console.log(response.orderedProducts);
         if (response && response.orderedProducts) {
           this.createChartForOrder(response.orderedProducts);

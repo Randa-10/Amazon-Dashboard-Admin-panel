@@ -21,7 +21,6 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { OverallComponent } from './components/overall/overall.component';
 import { ChartComponent } from './chart/chart.component';
-import { CardsComponent } from './components/cards/cards.component';
 import { ClientListComponent } from './components/clients/client-list/client-list.component';
 import { ClientsComponent } from './components/clients/clients.component';
 
@@ -39,7 +38,6 @@ import { ClientsComponent } from './components/clients/clients.component';
     PaginationComponent,
     OverallComponent,
     ChartComponent,
-    CardsComponent,
     ClientsComponent,
     ClientListComponent,
   ],
