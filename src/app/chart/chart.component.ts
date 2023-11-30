@@ -37,37 +37,33 @@ export class ChartComponent implements OnInit {
   }));
 
   const chartElement = this.acquisitionsCharts.last.nativeElement;
-
-  const newChart = new Chart(chartElement, {
+  const myChart = new Chart(chartElement, {
     type: 'bar',
-    options: {
-      animation: false,
-      plugins: {
-        legend: {
-          display: true,
-        },
-        tooltip: {
-          enabled: true,
-        },
-        title: {
-          display: true,
-          text: 'Quantity was Orderd',
-          font: {
-            size: 32,
-          },
-        },
-      },
+  data: {
+    labels: chartData.map(row => row.title),
+    datasets: [{
+      label: 'Quantity Ordered',
+      data: chartData.map(row => row.value),
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
+      borderColor: 'rgba(75, 192, 192, 1)',
+      borderWidth: 1,
+    }],
+  },
+  options: {
+    plugins: {
+      legend: { display: true, position: 'top' },
+      tooltip: { enabled: true },
+      title: { display: true, text: 'Quantity Ordered', font: { size: 16 } },
     },
-    data: {
-      labels: chartData.map((row) => row.title),
-      datasets: [
-        {
-          label: 'Quantity was Orderd',
-          data: chartData.map((row) => row.value),
-        }
-      ],
+    scales: {
+      x: { grid: { display: false } },
+      y: { beginAtZero: true, title: { display: true, text: 'Quantity' } },
     },
-  });
+    responsive: true,
+    maintainAspectRatio: false, 
+  },
+});
+ 
   this.orderCount = data.length;
   }
 
