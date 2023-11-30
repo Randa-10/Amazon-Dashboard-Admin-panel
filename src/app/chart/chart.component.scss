@@ -1,11 +1,11 @@
 
-.card {
+.card1 {
     border: 1px solid #ddd; 
     border-radius: 8px; 
     transition: transform 0.2s; 
   }
   
-  .card:hover {
+  .card1:hover {
     transform: scale(1.05); }
   
   .card-body {
@@ -13,10 +13,13 @@
     
   }
   
-  .card i {
+  .card1 i {
     color: rgb(11, 127, 173);
   }
-  
+  .hide-content {
+    margin-left: -200px; /* Adjust the value based on your sidebar width */
+    transition: margin-left 0.5s;
+  }
   .card-title {
     font-size: 1.2rem;
     margin-top: 0.5rem;

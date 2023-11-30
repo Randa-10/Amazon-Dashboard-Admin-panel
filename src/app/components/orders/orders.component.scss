@@ -8,7 +8,12 @@
   margin-top: 20px;
   // height: 100vh;
 }
-
+.card1 {
+  border: 1px solid #ddd; 
+  border-radius: 8px; 
+  transition: transform 0.2s; 
+  // padding:20px
+}
 h2 {
   color: #333;
 }

@@ -1,59 +1,65 @@
+nav {
+  background-color: #131921;
+  color: #f5f5f5;
+  border-bottom: #999797 1px solid;
+}
 
-nav{
-    background-color:#131921 ;
-    color: #f5f5f5;
-    border-bottom: #999797 1px solid;
+.list:hover {
+  background-color: #474747;
 }
-.list:hover{
-    background-color:#474747 ;
+
+.icon {
+  color: #f3f0f0;
 }
-.icon{
-    color:#f3f0f0
-}
+
 .sidebar {
-    height: 100vh;
-    width: 200px;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    background-color: #131921;
-    color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
-  }
-  
-  .sidebar a {
-    padding: 10px;
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    display: block;
-    transition: 0.2s;
-  }
-  
-  .sidebar a:hover {
-    background-color: #555;
-  }
-  
-  .open {
-    left: 0;
-  }
-  .open2{
-    right:0
-  }
-  .content {
-    transition: margin-left 0.5s;
-  }
-  
-  .sidebar2 {
-    height: 100vh;
-    width: 200px;
-    position: fixed;
-    top: 50px;
-    right: -250px;
-    background-color: #131921;
-    color: white;
-    overflow-x: hidden;
-    transition: 0.5s;
-  }
+  height: 100vh;
+  width: 0; /* Set initial width to 0 */
+  position: fixed;
+  top: 0;
+  left: 0; /* Changed left to 0 */
+  background-color: #131921;
+  color: white;
+  overflow-x: hidden;
+  transition: width 0.5s; /* Use width for the transition */
+}
+
+.sidebar a {
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #555;
+}
+
+.open {
+  width: 200px; /* Set width to the desired value when open */
+}
+
+.content {
+  margin-left: 0;
+  transition: margin-left 0.5s;
+}
+
+.sidebar2 {
+  height: 100vh;
+  width: 0; /* Set initial width to 0 */
+  position: fixed;
+  top: 50px;
+  right: 0; /* Changed right to 0 */
+  background-color: #131921;
+  color: white;
+  overflow-x: hidden;
+  transition: width 0.5s; /* Use width for the transition */
+}
+
+.open2 {
+  width: 200px; /* Set width to the desired value when open */
+}
+
   

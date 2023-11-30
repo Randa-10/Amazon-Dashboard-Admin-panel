@@ -60,7 +60,7 @@ export class ChartComponent implements OnInit {
       y: { beginAtZero: true, title: { display: true, text: 'Quantity' } },
     },
     responsive: true,
-    maintainAspectRatio: false, 
+    maintainAspectRatio: false, // Set to false to stretch the chart
   },
 });
  

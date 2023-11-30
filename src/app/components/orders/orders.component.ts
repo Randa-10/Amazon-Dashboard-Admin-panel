@@ -9,20 +9,15 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderServService } from 'src/app/services/order-serv.service';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatTable } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import {
-  MatPaginator,
-  MatPaginatorModule,
-  PageEvent,
-} from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
-  changeDetection: ChangeDetectionStrategy.Default, // Ensure this line is present
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class OrdersComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) sort: MatSort;
@@ -38,8 +33,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   ];
   defaultPageSize = 5;
   totalSales: number = 0;
-  isLoading = true;
-
+  isLoading = true; 
   constructor(
     private orderSrv: OrderServService,
     private route: ActivatedRoute,
@@ -49,20 +43,19 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     try {
-      this.isLoading = true;
       this.route.data.subscribe((data: any) => {
         this.orders = data.orders.orderedProducts;
         this.totalSales = data.orders.totalSales;
         this.dataSource.data = this.orders;
-        console.log(this.orders);
         this.dataSource.sort = this.sort;
-        this.isLoading = false;
+        this.isLoading = false; 
       });
     } catch (err) {
       console.log(err);
-      this.isLoading = false;
+      this.isLoading = false; 
     }
   }
+
   ngAfterViewInit() {
     if (this.paginator && this.orders) {
       this.paginator.page.subscribe((event: PageEvent) => {
@@ -73,19 +66,26 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
     this.cdr.detectChanges();
   }
+
   loadData(pageIndex: number, pageSize: number) {
-    this.isLoading = true;
-    if (this.orders.length > 0) {
-      this.dataSource.data = this.orders;
-      this.paginator.length = Math.min(this.orders.length, 50 * pageSize);
-      console.log(this.paginator);
-      this.updateDataSource(pageIndex, pageSize);
-    } else {
-      // Update the data source based on the current page
-      this.updateDataSource(pageIndex, pageSize);
-    }
-    this.isLoading = false;
+    this.isLoading = true; 
+
+    this.orderSrv.getOrders().subscribe(
+      (data: any) => {
+        this.orders = data.orderedProducts;
+        this.totalSales = data.totalSales;
+        this.dataSource.data = this.orders;
+        this.paginator.length = Math.min(this.orders.length, 50 * pageSize);
+        this.updateDataSource(pageIndex, pageSize);
+        this.isLoading = false; 
+      },
+      (error) => {
+        console.error('Error fetching data:', error);
+        this.isLoading = false; 
+      }
+    );
   }
+
   updateDataSource(pageIndex: number, pageSize: number) {
     const startIndex = pageIndex * pageSize;
     const endIndex = startIndex + pageSize;
