@@ -4,46 +4,50 @@
   </div>
   <div *ngFor="let client of paginatedData" class="card mb-4">
     <div class="row d-flex justify-content-center m-0 border bg-light">
-     
-      <div class="col-6 p-3 ">
+      <div class="col-6 p-3">
         <div class=" ">
-          <div class=" text-center">
-            <span class=" text-info ">CustomerName : </span>
+          <div class="text-center">
+            <span class="text-info">CustomerName : </span>
             <span class="fs-3">{{ client?.customer.name }}</span>
           </div>
         </div>
       </div>
       <div class="col-6 p-3">
         <div class="">
-          <div class=" text-center">
+          <div class="text-center">
             <span class="text-info">CustomerEmail : </span>
-            <span  class="fs-3">{{ client?.customer.email }}</span>
+            <span class="fs-3">{{ client?.customer.email }}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="row p-2 fs-4 bg-light m-0">
-      <div
-        *ngFor="let product of client.products"
-        class="card-body col-lg-3 col-md-4 col-sm-6 "
-      >
-        <div class="media border bg-secondary text-center" style="height: 250px">
-          <div class="p-1  m-auto" style="width: 100px; height: 100px">
-            <img
-              [src]="product?.product.thumbnail"
-              alt="{{ product.product.title }}"
-              class=" p-1 w-100 "
-            />
-          </div>
-          <div class="media-body ps-2 fs-4 fw-italic">
-            <h5 class="mt-0 fw-bold">{{ product?.product._id }}</h5>
-            <div style="height: 50px">
-                <h5 class="mt-0 fw-bold">{{ product?.product.en.title }}</h5>
-
-            </div>
-            <p>Quantity: {{ product?.quantity }}</p>
-          </div>
-        </div>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>Image</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of client.products">
+              <td class="text-muted">{{ product?.product._id }}</td>
+              <td>{{ product?.product.en.title }}</td>
+              <td>
+                <img
+                  [src]="product?.product.thumbnail"
+                  alt="{{ product.product.title }}"
+                  class="img-thumbnail rounded"
+                  style="max-width: 100px; max-height: 100px"
+                />
+              </td>
+              <td>{{ product?.quantity }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
