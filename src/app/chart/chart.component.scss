@@ -4,7 +4,7 @@
     border-radius: 8px; 
     transition: transform 0.2s; 
   }
-  
+ 
   .card1:hover {
     transform: scale(1.05); }
   
@@ -14,10 +14,10 @@
   }
   
   .card1 i {
-    color: rgb(11, 127, 173);
+    color: rgb(23, 31, 34);
   }
   .hide-content {
-    margin-left: -200px; /* Adjust the value based on your sidebar width */
+    margin-left: -200px; 
     transition: margin-left 0.5s;
   }
   .card-title {
@@ -26,7 +26,7 @@
   }
   
   .card-text {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 0;
   }
@@ -41,10 +41,4 @@
     border-radius: 8px; 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); 
     margin-top: 20px;
-  }
-  @media (max-width: 768px) {
-    // #acquisitionsChart {
-    //   width: 100% !important;
-    //   height: auto !important;
-    // }
   }

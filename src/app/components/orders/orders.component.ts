@@ -6,6 +6,7 @@ import {
   ViewChild,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
+  Input,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { OrderServService } from 'src/app/services/order-serv.service';
@@ -32,8 +33,9 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     'totalPrice',
   ];
   defaultPageSize = 5;
-  totalSales: number = 0;
+  // totalSales: number = 0;
   isLoading = true; 
+  @Input() totalSales: number; 
   constructor(
     private orderSrv: OrderServService,
     private route: ActivatedRoute,

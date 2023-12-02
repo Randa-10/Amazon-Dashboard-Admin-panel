@@ -5,31 +5,62 @@
  <div *ngFor="let chart of [1]" class="mt-5 ">
   <div class="container mt-2">
     <div class="row">
-      <div class="col-lg-6 col-md-6 mb-4">
+      <div class="col-lg-4 col-md-4 mb-4">
+        <a routerLink="/home/dashboard" class="text-decoration-none text-dark">
             <div class="card1 p-3" style="background-color: #e8f4f8;">
             <div class="card-body">
               <i class="fas fa-box fa-2x"></i>
               <h5 class="card-title">Products</h5>
-              <p class="card-text">{{ productCount$ | async }}</p>
+              <p class="card-text mb-1">{{ productCount$ | async }}</p>
             </div>
-            <a routerLink="/home/dashboard" class="p-2"><i class="fa-solid fa-arrow-right"></i>View Products</a>        
           </div>
+        </a>
       </div>   
-      <div class="col-lg-6 col-md-6 mb-4">
-          <div class="card1 p-3" style="background-color: #f3e9e9;">
+      <!-- <div class="row"> -->
+        <!-- <div class="col-lg-4 col-md-4 mb-4">
+          <a routerLink="/home/dashboard" class="text-decoration-none">
+            <div class="card1 p-4" style="background-color: #e8f4f8;">
+              <div class="card-body d-flex align-items-center text-dark  justify-content-center">
+                <i class="fas fa-box fa-3x me-3 text-dark"></i>
+                <div>
+                  <h5 class="card-title text-lg fs-4">Products</h5>
+                  <p class="card-text mb-1 text-md">{{ productCount$ | async }}</p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+         -->
+        
+     
+      <div class="col-lg-4 col-md-4 mb-4">
+        <a routerLink="/home/orders" class="text-decoration-none text-dark">
+          <div class="card1 p-3" style="background-color: #f9d3ac;">
             <div class="card-body">
               <i class="fas fa-shopping-cart fa-2x"></i>
               <h5 class="card-title">Orders</h5>
-              <p class="card-text">{{ orderCount }}</p>
+              <p class="card-text mb-1">{{ orderCount }}</p>
             </div>
-            <a routerLink="/home/orders" class="p-2"><i class="fa-solid fa-arrow-right"></i>View Orders</a>        
           </div>
+          </a>
+      </div>
+      <div class="col-lg-4 col-md-4 mb-4">
+        <a routerLink="/home/clients" class="text-decoration-none text-dark">
+        <div class="card1 p-3" style="background-color:rgba(255, 255, 0, 0.3)">
+        <div class="card-body">
+       <i class="fas fa-chart-pie fa-2x"></i>
+          <h5 class="card-title">Sales:</h5>
+          <p class="card-text mb-1">{{ totalSales | currency: 'EGP' }}</p>
         </div>
+      </div>
+      </a>
+      </div> 
     </div>
   </div>
-<div class="row">
-  <div class="col-lg-12 chart" style="width: 100%; margin: auto;">
-    <canvas  #acquisitionsChart class="w-100 h-100"></canvas>
+
+<div class="row mt-4">
+  <div *ngFor="let chart of [1, 2]" class="col-lg-6 col-md-12 chart ">
+    <canvas #acquisitionsChart style="height: 100%;"></canvas>
   </div>
 </div>
 </div>

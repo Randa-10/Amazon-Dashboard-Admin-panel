@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Chart } from 'chart.js';
 import { ProductService } from '../services/product.service';
 import { OrderServService } from '../services/order-serv.service';
@@ -16,19 +16,54 @@ export class ChartComponent implements OnInit {
   orderCount: number = 0; 
   productCount$: Observable<number>;
   isLoading = true;
+totalSales: number = 0;
 
   constructor(
     private productService: ProductService,
     private orderService: OrderServService,
- 
   ) {}
 
   ngOnInit() {
     this.orders();
     this.isLoading = false;
     this.productCount$ = this.productService.getNumberOfProducts(); 
-  }
+    this.orderService.getOrders().subscribe(
+      (data: any) => {
+        this.totalSales = data.totalSales;
+        this.createChart();
 
+      },
+      (error) => {
+        console.error('Error fetching total sales:', error);
+      }
+    );
+
+    }
+//
+ createChart(): void {
+  const chartElement = this.acquisitionsCharts.first.nativeElement;
+  const myChart = new Chart(chartElement, {
+      type: 'polarArea', 
+      data: {
+        labels: ['Total Sales'],
+        datasets: [{
+          label: 'Total Sales',
+          data: [this.totalSales],
+          backgroundColor: 'rgba(255, 255, 0, 0.3)', 
+          borderColor: 'rgba(255, 255, 0, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+//
   createChartForOrder(data: any[]): void {  const chartData = data.map((item) => ({
     title: item.product.en.title
       ? item.product.en.title.toString()
@@ -85,3 +120,7 @@ export class ChartComponent implements OnInit {
     );
   }
 }
+function output(): (target: ChartComponent, propertyKey: "totalSales") => void {
+  throw new Error('Function not implemented.');
+}
+
