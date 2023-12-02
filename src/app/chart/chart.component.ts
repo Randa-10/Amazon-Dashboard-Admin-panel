@@ -39,30 +39,31 @@ export class ChartComponent implements OnInit {
   const chartElement = this.acquisitionsCharts.last.nativeElement;
   const myChart = new Chart(chartElement, {
     type: 'bar',
-  data: {
-    labels: chartData.map(row => row.title),
-    datasets: [{
-      label: 'Quantity Ordered',
-      data: chartData.map(row => row.value),
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
-    }],
-  },
-  options: {
-    plugins: {
-      legend: { display: true, position: 'top' },
-      tooltip: { enabled: true },
-      title: { display: true, text: 'Quantity Ordered', font: { size: 16 } },
+    data: {
+      labels: chartData.map(row => row.title),
+      datasets: [{
+        label: 'Quantity Ordered',
+        data: chartData.map(row => row.value),
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      }],
     },
-    scales: {
-      x: { grid: { display: false } },
-      y: { beginAtZero: true, title: { display: true, text: 'Quantity' } },
+    options: {
+      plugins: {
+        legend: { display: true, position: 'top' },
+        tooltip: { enabled: true },
+        title: { display: true, text: 'Quantity Ordered', font: { size: 16 } },
+      },
+      scales: {
+        x: { grid: { display: false } },
+        y: { beginAtZero: true, title: { display: true, text: 'Quantity' } },
+      },
+      responsive: true, // Enable responsiveness
+      maintainAspectRatio: false, // Set to false to stretch the chart
     },
-    responsive: true,
-    maintainAspectRatio: false, // Set to false to stretch the chart
-  },
-});
+  });
+
  
   this.orderCount = data.length;
   }
