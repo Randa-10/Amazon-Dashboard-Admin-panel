@@ -67,7 +67,7 @@ export class OverallComponent {
           {
             label: 'Rating',
             data: chartData.map((row) => row.rating),
-            backgroundColor: 'rgba(173, 218, 153, 1) ',
+            backgroundColor: '#c4e0b8',
             borderColor: 'rgba(173, 218, 153, 1) ',
             borderWidth: 1,
           },
