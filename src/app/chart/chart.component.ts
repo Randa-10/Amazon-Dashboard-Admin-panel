@@ -49,8 +49,8 @@ totalSales: number = 0;
         datasets: [{
           label: 'Total Sales',
           data: [this.totalSales],
-          backgroundColor: 'rgba(255, 255, 0, 0.3)', 
-          borderColor: 'rgba(255, 255, 0, 1)',
+          backgroundColor: 'rgba(166, 179, 184,.7)', 
+          borderColor: 'rgba(166, 179, 184,.8)',
           borderWidth: 1
         }]
       },
@@ -75,12 +75,12 @@ totalSales: number = 0;
   const myChart = new Chart(chartElement, {
     type: 'bar',
     data: {
-      labels: chartData.map(row => row.title),
+      labels: chartData.map(row => row.title.slice(0, 20)), 
       datasets: [{
         label: 'Quantity Ordered',
         data: chartData.map(row => row.value),
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-        borderColor: 'rgba(75, 192, 192, 1)',
+        backgroundColor: '#f9d3ac',
+        borderColor: '#f9d3ac',
         borderWidth: 1,
       }],
     },
@@ -94,10 +94,11 @@ totalSales: number = 0;
         x: { grid: { display: false } },
         y: { beginAtZero: true, title: { display: true, text: 'Quantity' } },
       },
-      responsive: true, // Enable responsiveness
-      maintainAspectRatio: false, // Set to false to stretch the chart
+      responsive: true, 
+      maintainAspectRatio: false,
     },
   });
+  
 
  
   this.orderCount = data.length;

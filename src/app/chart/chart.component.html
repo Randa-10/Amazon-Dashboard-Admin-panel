@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-lg-4 col-md-4 mb-4">
         <a routerLink="/home/dashboard" class="text-decoration-none text-dark">
-            <div class="card1 p-3" style="background-color: #e8f4f8;">
+            <div class="card1 p-3" style="background-color:#adda99">
             <div class="card-body">
               <i class="fas fa-box fa-2x"></i>
               <h5 class="card-title">Products</h5>
@@ -30,12 +30,10 @@
             </div>
           </a>
         </div>
-         -->
-        
-     
+         -->  
       <div class="col-lg-4 col-md-4 mb-4">
         <a routerLink="/home/orders" class="text-decoration-none text-dark">
-          <div class="card1 p-3" style="background-color: #f9d3ac;">
+          <div class="card1 p-3" style="background-color: #f9d3ac; ">
             <div class="card-body">
               <i class="fas fa-shopping-cart fa-2x"></i>
               <h5 class="card-title">Orders</h5>
@@ -46,7 +44,7 @@
       </div>
       <div class="col-lg-4 col-md-4 mb-4">
         <a routerLink="/home/clients" class="text-decoration-none text-dark">
-        <div class="card1 p-3" style="background-color:rgba(255, 255, 0, 0.3)">
+        <div class="card1 p-3" style="background-color: #A6B3B8">
         <div class="card-body">
        <i class="fas fa-chart-pie fa-2x"></i>
           <h5 class="card-title">Sales:</h5>
@@ -59,7 +57,7 @@
   </div>
 
 <div class="row mt-4">
-  <div *ngFor="let chart of [1, 2]" class="col-lg-6 col-md-12 chart ">
+  <div *ngFor="let chart of [1, 2]" class="col-lg-5 offset-1 col-md-12 chart ">
     <canvas #acquisitionsChart style="height: 100%;"></canvas>
   </div>
 </div>

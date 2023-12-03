@@ -31,7 +31,6 @@ export class OverallComponent {
   }
 
   createChartFromServiceA(data: any[]): void {
-    // Chart creation logic for Service A's data
     this.isLoading = false;
     const chartData = data.map((item) => ({
       title: item.en.title ? item.en.title.toString() : 'Unknown',
@@ -63,13 +62,13 @@ export class OverallComponent {
         maintainAspectRatio: false, 
       },
       data: {
-        labels: chartData.map((row) => row.title),
+        labels: chartData.map(row => row.title.slice(0, 20)), 
         datasets: [
           {
             label: 'Rating',
             data: chartData.map((row) => row.rating),
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(173, 218, 153, 1) ',
+            borderColor: 'rgba(173, 218, 153, 1) ',
             borderWidth: 1,
           },
         ],
@@ -82,8 +81,7 @@ export class OverallComponent {
       quantityInStock: +item.quantityInStock,
     }));
 
-    const chartElement = this.acquisitionsCharts.last.nativeElement; // Using first element for the chart
-
+    const chartElement = this.acquisitionsCharts.last.nativeElement; 
     const newChart = new Chart(chartElement, {
       type: 'polarArea',
       options: {
@@ -99,13 +97,14 @@ export class OverallComponent {
             display: true,
             text: 'Quantity In Stock',
             font: {
-              size: 32, // Change this to your desired font size
+              size: 32,
             },
           },
         },
       },
+      
       data: {
-        labels: chartData.map((row) => row.title),
+        labels: chartData.map(row => row.title.slice(0, 10)), 
         datasets: [
           {
             label: 'Quantity In Stock',
@@ -115,6 +114,7 @@ export class OverallComponent {
       },
     });
   }
+
 
   getProducts(): void {
     this.productService.getProducts().subscribe(

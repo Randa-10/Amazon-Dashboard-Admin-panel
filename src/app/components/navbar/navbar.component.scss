@@ -14,14 +14,14 @@ nav {
 
 .sidebar {
   height: 100vh;
-  width: 0; /* Set initial width to 0 */
+  width: 0; 
   position: fixed;
   top: 0;
-  left: 0; /* Changed left to 0 */
+  left: 0; 
   background-color: #131921;
   color: white;
   overflow-x: hidden;
-  transition: width 0.5s; /* Use width for the transition */
+  transition: width 0.5s; 
 }
 
 .sidebar a {
@@ -38,7 +38,7 @@ nav {
 }
 
 .open {
-  width: 200px; /* Set width to the desired value when open */
+  width: 200px; 
 }
 
 .content {
@@ -48,18 +48,18 @@ nav {
 
 .sidebar2 {
   height: 100vh;
-  width: 0; /* Set initial width to 0 */
+  width: 0; 
   position: fixed;
   top: 50px;
-  right: 0; /* Changed right to 0 */
+  right: 0; 
   background-color: #131921;
   color: white;
   overflow-x: hidden;
-  transition: width 0.5s; /* Use width for the transition */
+  transition: width 0.5s; 
 }
 
 .open2 {
-  width: 200px; /* Set width to the desired value when open */
+  width: 200px;
 }
 
   
