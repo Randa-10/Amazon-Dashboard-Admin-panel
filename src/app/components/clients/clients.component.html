@@ -1,5 +1,8 @@
-<!-- *ngIf="dataLoaded"<div *ngIf="isLoading" class="loader">
-  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner></div> -->
-<div >
-  <app-client-list [data]="data" [DataLength]="DataLength"></app-client-list>
-</div>
+
+  <div *ngIf="data && DataLength > 0; else loadingTemplate">
+    <app-client-list [data]="data" [DataLength]="DataLength"></app-client-list>
+  </div>
+  <ng-template #loadingTemplate>
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </ng-template>
+  

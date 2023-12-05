@@ -15,7 +15,7 @@ export class ClientListComponent implements OnInit ,AfterViewInit{
 
   }
   ngAfterViewInit() {
-    this.paginatedData;
+    // this.paginatedData;
   }
   get paginatedData() {
     const start = (this.currentPage - 1) * this.itemsPerPage;

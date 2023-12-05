@@ -16,7 +16,7 @@ export class ClientsComponent implements OnDestroy {
     this.getClients()  
     setTimeout(() => {
       // this.dataLoaded = true;
-    }, 1000);
+    }, 5000);
   }
   getClients(): any {
     this.orderSrv.getClients().subscribe(
@@ -26,6 +26,8 @@ export class ClientsComponent implements OnDestroy {
           // this.isLoading = false;
           this.data=response.clients
           this.DataLength=this.data.length
+          console.log(this.data,this.DataLength);
+          
         }else{
           this.data=[]
         }
