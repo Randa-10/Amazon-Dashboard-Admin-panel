@@ -16,7 +16,7 @@ export class ClientsComponent implements OnDestroy {
     this.getClients()  
     setTimeout(() => {
       // this.dataLoaded = true;
-    }, 5000);
+    }, 1000);
   }
   getClients(): any {
     this.orderSrv.getClients().subscribe(
