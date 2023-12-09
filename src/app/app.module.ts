@@ -23,6 +23,7 @@ import { OverallComponent } from './components/overall/overall.component';
 import { ChartComponent } from './chart/chart.component';
 import { ClientListComponent } from './components/clients/client-list/client-list.component';
 import { ClientsComponent } from './components/clients/clients.component';
+// import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ClientsComponent } from './components/clients/clients.component';
     MatSortModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+
   ],
   providers: [MatPaginator],
   bootstrap: [AppComponent],

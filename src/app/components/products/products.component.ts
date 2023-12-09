@@ -7,6 +7,7 @@ import { SubSubcategory } from 'src/app/models/sub-subcategory';
 import { Subcategory } from 'src/app/models/subcategory';
 import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -125,12 +126,7 @@ export class ProductsComponent implements OnInit {
     return this.productForm.get('images') as FormArray;
   }
 
-  // Function to add new image URL control to the 'images' FormArray
-
-  //////
-
   onSubmit(): void {
-    // / add new product and update existing product&&this.productForm.valid)
     if (this.currentProductID) {
       console.log(this.productForm.value, 'form value');
       this.productService
@@ -139,41 +135,53 @@ export class ProductsComponent implements OnInit {
           next: (data) => {
             this.isLoading = false;
             console.log('updated prod:', data);
-            alert('product updated successfully');
-            this.router.navigate(['home/dashboard']);
+            Swal.fire({
+              icon: 'success',
+              title: 'Product Updated!',
+              text: 'Product updated successfully.',
+            }).then(() => {
+              this.router.navigate(['home/dashboard']);
+            });
           },
           error: (err) => {
             this.isLoading = false;
-            alert(' please insert valid data');
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Please insert valid data.',
+            });
             console.log(err);
           },
         });
     } else if (this.productForm.valid && !this.currentProductID) {
       console.log(this.productForm.value);
-
+  
       const newProduct: Products = this.productForm.value;
       this.productService.SaveNewProduct(newProduct).subscribe({
         next: (data) => {
           this.isLoading = false;
-
+  
           console.log('Product saved successfully:', data);
-          this.productForm.reset();
-          alert('Product saved successfully');
-          this.router.navigate(['home/dashboard']);
-          const selectedCategoryIdControl = this.productForm.get('category');
-
-          if (selectedCategoryIdControl) {
-            const selectedCategoryId = selectedCategoryIdControl.value;
-            // console.log('Selected Category ID:',selectedCategoryId);
-          } else {
-            console.error('Error: selectedCategoryId control is null.');
-          }
+          Swal.fire({
+            icon: 'success',
+            title: 'Product Saved!',
+            text: 'Product saved successfully.',
+          }).then(() => {
+            this.productForm.reset();
+            this.router.navigate(['home/dashboard']);
+          });
         },
-        error: (err) => console.error('Error saving product:', err),
+        error: (err) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error saving product. Please try again.',
+          });
+          console.error('Error saving product:', err);
+        },
       });
     }
   }
-
   getCategories(): void {
     this.categoryService.getCategories().subscribe(
       (response) => {

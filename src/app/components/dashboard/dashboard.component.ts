@@ -4,6 +4,7 @@ import { Products } from 'src/app/models/products';
 import { ProductService } from 'src/app/services/product.service';
 import { ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-dashboard',
@@ -79,13 +80,22 @@ export class DashboardComponent implements OnInit, OnChanges {
     this.currentPage = page
   }
 
-
   confirmDelete(productId: string): void {
-    const isConfirmed = window.confirm('Are you sure you want to delete this product?');
-
-    if (isConfirmed) {
-      this.deleteProduct(productId);
-    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteProduct(productId);
+      } else {
+        console.log('Deletion canceled');
+      }
+    });
   }
 
   deleteProduct(productId: string): void {
